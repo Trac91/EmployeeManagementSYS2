@@ -10,59 +10,53 @@ public class Login extends JFrame {
         JFrame JFrameWindow = new JFrame();
 
         JFrameWindow.setTitle("Login");
-        GridBagLayout flowLayout = new GridBagLayout();
-        JFrameWindow.setLayout(flowLayout);
         JFrameWindow.setSize(1000, 500);
-        JFrameWindow.setBackground(Color.blue);
-
         JFrameWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        JPanel mainLoginPanel = new JPanel();
+        JFrameWindow.getContentPane().add(mainLoginPanel);
+
+        JPanel loginPanel = new JPanel(new GridBagLayout());
+        GridBagConstraints c = new GridBagConstraints();
+        c.gridx=0;
+        c.gridy=0;
+
+        mainLoginPanel.add(loginPanel);
+
+
+
         JLabel loginLabel = new JLabel("Login");
-        loginLabel.setLocation(30, 50);
-        JFrameWindow.add(loginLabel);
+        c.gridx = 0;
+        c.gridy = 1;
+        loginPanel.add(loginLabel);
+
 
         JLabel userLabel = new JLabel("Username\n");
-        JFrameWindow.add(userLabel);
-
-        JTextField userField = new JTextField(20);
-        JFrameWindow.add(userField);
+        c.gridx = 2;
+        c.gridy = 2;
+        loginPanel.add(userLabel);
 
         JLabel passwordLabel = new JLabel("\nPassword");
-        JFrameWindow.add(passwordLabel);
+        loginPanel.add(passwordLabel);
+
+        JTextField userField = new JTextField(20);
+        loginPanel.add(userField);
 
         JTextField passwordField = new JTextField(15);
-        JFrameWindow.add(passwordField);
+        loginPanel.add(passwordField);
 
         JButton submitButton = new JButton("Submit");
-        JFrameWindow.add(submitButton);
-
+        loginPanel.add(submitButton);
 
 
         JButton clearButton = new JButton("Clear");
-        JFrameWindow.add(clearButton);
+        loginPanel.add(clearButton);
+
 
         JFrameWindow.setVisible(true);
 
 
     }
-
-     /*   JFrame optionWindow = new JFrame();
-        JFrameWindow.setTitle("Select");
-        FlowLayout optionLayout = new FlowLayout();
-        JFrameWindow.setLayout(optionLayout);
-        JFrameWindow.setSize(1000,500);
-        JFrameWindow.setBackground(Color.blue);
-
-        JButton employeeButton = new JButton("Employee Management System");
-        JFrameWindow.add(employeeButton);
-
-        JButton mortgageButton = new JButton("Mortgage Calculator");
-        JFrameWindow.add(mortgageButton);
-
-        JFrameWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        JFrameWindow.setVisible(true);
-
-*/
 }
 
 
