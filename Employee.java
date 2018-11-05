@@ -1,4 +1,4 @@
-public class Employee {
+public abstract class Employee {
 
     private String employeeID;
     private String name;

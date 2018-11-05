@@ -12,47 +12,63 @@ public class Login extends JFrame {
         JFrameWindow.setTitle("Login");
         JFrameWindow.setSize(1000, 500);
         JFrameWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+       // FlowLayout flowLayout = new FlowLayout();
         JPanel mainLoginPanel = new JPanel();
         JFrameWindow.getContentPane().add(mainLoginPanel);
 
         JPanel loginPanel = new JPanel(new GridBagLayout());
-        GridBagConstraints c = new GridBagConstraints();
-        c.gridx=0;
-        c.gridy=0;
+        GridBagConstraints cLogin = new GridBagConstraints();
+        loginPanel.setSize(300,500);
+        loginPanel.setBackground(Color.lightGray);
+        cLogin.gridx=0;
+        cLogin.gridy=0;
 
-        mainLoginPanel.add(loginPanel);
-
-
-
-        JLabel loginLabel = new JLabel("Login");
-        c.gridx = 0;
-        c.gridy = 1;
-        loginPanel.add(loginLabel);
-
+        mainLoginPanel.add(loginPanel,cLogin);
 
         JLabel userLabel = new JLabel("Username\n");
-        c.gridx = 2;
-        c.gridy = 2;
-        loginPanel.add(userLabel);
+        cLogin.gridx = 0;
+       // cLogin.gridy ++;
+        cLogin.anchor = GridBagConstraints.LINE_END;
+        cLogin.insets = new Insets(30,15,0,0);
+        loginPanel.add(userLabel,cLogin);
 
         JLabel passwordLabel = new JLabel("\nPassword");
-        loginPanel.add(passwordLabel);
+        cLogin.gridx = 0;
+        cLogin.gridy = 1;
+        loginPanel.add(passwordLabel,cLogin);
 
+        // Create Login fields
         JTextField userField = new JTextField(20);
-        loginPanel.add(userField);
+        cLogin.gridx = 1;
+        cLogin.gridy = 0;
+        loginPanel.add(userField,cLogin);
 
-        JTextField passwordField = new JTextField(15);
-        loginPanel.add(passwordField);
+        // Password 
+        JTextField passwordField = new JTextField(20);
+        cLogin.gridx = 1;
+        cLogin.gridy = 1;
+        cLogin.anchor = GridBagConstraints.LINE_START;
+        cLogin.insets = new Insets(30,20,5,0);
+        loginPanel.add(passwordField,cLogin);
 
+        // Create Login submit button
         JButton submitButton = new JButton("Submit");
-        loginPanel.add(submitButton);
+        cLogin.gridx = 4;
+        cLogin.gridy = 2;
+        cLogin.insets = new Insets(15,0,10,20);
+        cLogin.anchor = GridBagConstraints.LINE_START;
+        // add submit button
+        loginPanel.add(submitButton,cLogin);
 
-
+        // Create Login clear button
         JButton clearButton = new JButton("Clear");
-        loginPanel.add(clearButton);
+        cLogin.gridx = 3;
+        cLogin.gridy = 2;
+        cLogin.insets = new Insets(15,0,10,20);
+        // add clear button
+        loginPanel.add(clearButton,cLogin);
 
-
+        // show on JFrame
         JFrameWindow.setVisible(true);
 
 
