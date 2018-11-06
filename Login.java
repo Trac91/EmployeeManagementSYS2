@@ -11,6 +11,7 @@ public class Login extends JFrame {
 
         JFrameWindow.setTitle("Login");
         JFrameWindow.setSize(1000, 500);
+
         JFrameWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
        // FlowLayout flowLayout = new FlowLayout();
         JPanel mainLoginPanel = new JPanel();
@@ -20,10 +21,12 @@ public class Login extends JFrame {
         GridBagConstraints cLogin = new GridBagConstraints();
         loginPanel.setSize(300,500);
         loginPanel.setBackground(Color.lightGray);
+
         cLogin.gridx=0;
         cLogin.gridy=0;
 
         mainLoginPanel.add(loginPanel,cLogin);
+
 
         JLabel userLabel = new JLabel("Username\n");
         cLogin.gridx = 0;
@@ -44,7 +47,7 @@ public class Login extends JFrame {
         loginPanel.add(userField,cLogin);
 
         // Password 
-        JTextField passwordField = new JTextField(20);
+        JPasswordField passwordField = new JPasswordField(20);
         cLogin.gridx = 1;
         cLogin.gridy = 1;
         cLogin.anchor = GridBagConstraints.LINE_START;

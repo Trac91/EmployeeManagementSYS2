@@ -4,7 +4,7 @@ import java.awt.*;
 public class menuGUI extends JFrame {
     public static void main(String[] args) {
 
-        // Create Main Application Window
+        // Main Application Window
         JFrame JFrameWindow = new JFrame();
         GridBagLayout gridBagLayout = new GridBagLayout();
         //FlowLayout flowLayout = new FlowLayout();
@@ -12,12 +12,12 @@ public class menuGUI extends JFrame {
         JFrameWindow.setSize(1000,600);
         JFrameWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        // Create Main JPanel on JFrame
+        //  Main JPanel on JFrame
         JPanel mainPanel = new JPanel(); // Creates Main Panel where additional panels will be on top
         mainPanel.setBackground(Color.GRAY);
         JFrameWindow.getContentPane().add(mainPanel);
 
-        // Create EmployeeForm JPanel
+        // EmployeeForm JPanel
         JPanel employeeForm = new JPanel(new GridBagLayout()); // Employee details panel
         employeeForm.setSize(500,600);
         employeeForm.setBackground(Color.lightGray);
@@ -31,7 +31,7 @@ public class menuGUI extends JFrame {
         c.anchor = GridBagConstraints.LINE_START;
         c.insets = new Insets(10,20,5,20);
 
-        // Create JLabels for Employee Form
+        //JLabels for Employee Form
         JLabel idLabel = new JLabel("Employee ID");
         employeeForm.add(idLabel,c);
         c.gridy++; // Increments and moves to row below
@@ -117,33 +117,24 @@ public class menuGUI extends JFrame {
         JFrameWindow.add(mainPanel); // Add main panel to JFrame
         JFrameWindow.setVisible(true); // JFrame can be seen
 
-        // Creating Search Panel
+        //  Search Panel
         JPanel searchPanel = new JPanel(new GridBagLayout());
-        searchPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK,2,true));
-        searchPanel.setSize(500,200);
-
+        searchPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.BLACK,1,true),"Search Employee ID / Name"));
+        searchPanel.setSize(700,200);
 
         GridBagConstraints c1 = new GridBagConstraints();
         c1.gridx =0;
         c1.gridy=0;
 
-        // Create search label
-        JLabel searchLabel = new JLabel("EmployeeID / Name / Surname");
-
-        c1.gridx = 40;
-        c1.gridy = 20;
-       // c1.anchor = GridBagConstraints.LINE_START;
-       // c1.insets = new Insets(10,30,5,0);
-        c1.ipadx = 10;
-        c1.ipady = 30; // referenced from mr java help - Youtube
-        searchPanel.add(searchLabel,c1); // add search label to search panel
-
         JTextField searchField = new JTextField(20);
-        c1.gridx = 11;
-        c1.gridy = 12;
+        c1.gridx = 14;
+        c1.gridy = 11;
         searchPanel.add(searchField,c1); // add search field on search panel
         mainPanel.add(searchPanel,c1);
         JButton searchButton = new JButton("Search");
+        c1.gridx = 16;
+        c1.gridy = 11;
+       // c.insets = new Insets(0,20,0,20);
         searchPanel.add(searchButton,c1); // add search button to search panel
 
 
