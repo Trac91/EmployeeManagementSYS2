@@ -1,9 +1,12 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class menuGUI extends JFrame {
+
+
+public class menuGUI  {
     public static void main(String[] args) {
 
+  /*
         // Main Application Window
         JFrame JFrameWindow = new JFrame();
         GridBagLayout gridBagLayout = new GridBagLayout();
@@ -11,6 +14,8 @@ public class menuGUI extends JFrame {
         JFrameWindow.setTitle("Employee Management System");
         JFrameWindow.setSize(1000,600);
         JFrameWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+
 
         //  Main JPanel on JFrame
         JPanel mainPanel = new JPanel(); // Creates Main Panel where additional panels will be on top
@@ -138,7 +143,7 @@ public class menuGUI extends JFrame {
         searchPanel.add(searchButton,c1); // add search button to search panel
 
 
-
+*/
 
 
 
