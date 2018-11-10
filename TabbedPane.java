@@ -19,16 +19,18 @@ public class TabbedPane extends JFrame { // JTabbedPane referenced from https://
         employPanel.add(employLabel);
         mortgagePanel.add(mortgageLabel);
 
-        JPanel employeeForm = new JPanel(new GridBagLayout()); // Employee details panel
-        employeeForm.setSize(500,600);
+        JPanel employeeForm = new JPanel(); // Employee details panel
+        employeeForm.setSize(1000,600);
         employeeForm.setBackground(Color.lightGray);
         employeeForm.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.BLACK,1,true),"Register Employee"));
+
         employPanel.add(employeeForm);
 
+        add(tabbedPane);
         tabbedPane.add("File",filePanel);
         tabbedPane.add("Employee Details",employPanel);
         tabbedPane.add("Mortgage Calculator",mortgagePanel);
-        add(tabbedPane);
+ tabbedPane.setVisible(true);
 
     }
 }
