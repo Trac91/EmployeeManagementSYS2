@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.event.ActionListener;
 
 public class BankApplication extends MenuJFrame {
 
@@ -8,6 +9,7 @@ public class BankApplication extends MenuJFrame {
 
     MenuJFrame guiApp = new MenuJFrame();
 
+    JPanel employeeForm = new JPanel();
 
     }
 
