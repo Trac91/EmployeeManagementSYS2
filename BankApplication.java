@@ -9,7 +9,6 @@ public class BankApplication extends MenuJFrame {
 
     MenuJFrame guiApp = new MenuJFrame();
 
-    JPanel employeeForm = new JPanel();
 
     }
 

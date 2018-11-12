@@ -2,8 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+
 
 public class MenuJFrame implements ActionListener {
 
@@ -13,14 +12,12 @@ public class MenuJFrame implements ActionListener {
     JMenu file,employees,mortgages;
     JMenuItem exit, addEmployee, editEmployee, deleteEmployee, applyMortgage,viewMortgages;
     JButton addEmployeeButton;
-  //  private Container contentPane;
-
 
     public MenuJFrame() {
-        JFrame JFrameWindow = new JFrame();
+        JFrameWindow = new JFrame();
         JFrameWindow.setVisible(true);
         JFrameWindow.setTitle("Employee Management System");
-        JFrameWindow.setSize(1000, 600);
+        JFrameWindow.setSize(1500, 1000);
         JFrameWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Menu Bar
@@ -51,27 +48,26 @@ public class MenuJFrame implements ActionListener {
         employees.add(deleteEmployee);
         mortgages.add(applyMortgage);
         mortgages.add(viewMortgage);
-
     }
-    // program closes when exit is clicked
+
     @Override
     public void actionPerformed(ActionEvent e) {
-       // System.exit(0);
 
-        if (e.getActionCommand().equals("Exit"))
+
+        if (e.getActionCommand().equals("Exit")) // program closes when exit is clicked
         {
             System.exit(0);
         }
-        else if(e.getActionCommand().equals("Add Employee"))
+        else if(e.getActionCommand().equals("Add Employee")) // Add employee form appears
         {
-            employeeForm.setVisible(true);
-            employeeForm.validate();
+            EmployeeForm();
         }
         else if(e.getActionCommand().equals("Edit Employee"))
         {
+            EmployeeForm();
+            searchPanel();
             // search bar appears to find employee to edit
             // employee form appears with fields filled with employee details ready to be edited
-            employeeForm.setVisible(true);
         }
 
         else if(e.getActionCommand().equals("Delete Employee"))
@@ -89,25 +85,29 @@ public class MenuJFrame implements ActionListener {
         else if(e.getActionCommand().equals("View Applications"))
         {
             //JTable with Mortgage details appear showing the status of the application
-            // Options to cancel
+            // Options to cancel application
         }
     }
-
     public class EmployeeForm
     {
-
+        JFrame JFrameWindow;
+            JPanel employeeForm;
+            JLabel idLabel, nameLabel,addressLabel,emailLabel,phoneLabel, departmentLabel,jobTitleLabel;
+            JTextField idField, nameField, addressField,emailField,phoneField;
+            JComboBox divisionField, departmentField;
+            JButton clearButton,registerButton;
     }
 
     public void EmployeeForm()
     {
+        JOptionPane.showMessageDialog(null,"Loading Employee panel");
         // EmployeeForm JPanel
         JPanel employeeForm = new JPanel(new GridBagLayout()); // Employee details panel
         employeeForm.setSize(500,600);
         employeeForm.setBackground(Color.lightGray);
-        employeeForm.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.BLACK,1,true),"Register Employee"));
-        JFrameWindow.add(employeeForm);
+        employeeForm.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.BLACK,1,true),"Employee Details"));
 
-        // Set Position of components
+        // Set constraints to Position components in JPanel
         GridBagConstraints c = new GridBagConstraints();
         c.gridx = 0; // Referenced from Mr Java Help Youtube
         c.gridy = 0;
@@ -119,19 +119,19 @@ public class MenuJFrame implements ActionListener {
         employeeForm.add(idLabel,c);
         c.gridy++; // Increments and moves to row below
 
-        JLabel nameLabel = new JLabel("\nName\n");
+        JLabel nameLabel = new JLabel("Name");
         employeeForm.add(nameLabel,c);
         c.gridy++;
 
-        JLabel addressLabel = new JLabel("\nAddress\n");
+        JLabel addressLabel = new JLabel("Address");
         employeeForm.add(addressLabel,c);
         c.gridy++;
 
-        JLabel emailLabel = new JLabel("\nEmail");
+        JLabel emailLabel = new JLabel("Email");
         employeeForm.add(emailLabel,c);
         c.gridy++;
 
-        JLabel phoneLabel = new JLabel("\nPhone No.");
+        JLabel phoneLabel = new JLabel("Phone No.");
         employeeForm.add(phoneLabel,c);
         c.gridy++;
 
@@ -197,9 +197,52 @@ public class MenuJFrame implements ActionListener {
         c.anchor = GridBagConstraints.LINE_END;
         employeeForm.add(registerButton,c);
 
-        JFrameWindow.add(employeeForm);
+        Container pane = JFrameWindow.getContentPane();
+        pane.add(employeeForm);
+    }
 
-        //employeeForm.setVisible(false);
+    public class searchPanel
+    {
+        JFrame JFrameWindow;
+        JPanel searchPanel;
+        JTextField searchField;
+        JButton searchButton;
+    }
+
+    public void searchPanel()
+    {
+        JOptionPane.showMessageDialog(null,"Loading search panels");
+        JPanel searchPanel = new JPanel(new GridBagLayout());
+
+        searchPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.BLACK,1,true),"Search Employee ID / Name"));
+        searchPanel.setSize(100,200);
+
+
+        searchPanel.setBackground(Color.cyan);
+        GridBagConstraints c1 = new GridBagConstraints();
+        c1.gridx =0;
+        c1.gridy=0;
+
+        JLabel searchLabel= new JLabel("Search Employee eg. Name, ID , Department");
+        c1.gridx = 12;
+        c1.gridy = 11;
+
+        JTextField searchField = new JTextField(20);
+        c1.gridx = 14;
+        c1.gridy = 12;
+
+        JButton searchButton = new JButton("Search");
+        c1.gridx = 16;
+        c1.gridy = 13;
+        // c.insets = new Insets(0,20,0,20);
+        searchPanel.add(searchField,c1); // add search field on search panel
+         searchPanel.add(searchLabel,c1);
+        searchPanel.add(searchButton,c1); // add search button to search panel
+        searchPanel.setVisible(true);
+
+        Container pane = JFrameWindow.getContentPane();
+        pane.add(searchPanel);
+
 
 
     }
@@ -208,36 +251,6 @@ public class MenuJFrame implements ActionListener {
 
 
 
-
-
-
-
-
-/*
-
-        //  Search Panel
-        JPanel searchPanel = new JPanel(new GridBagLayout());
-        searchPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.BLACK,1,true),"Search Employee ID / Name"));
-        searchPanel.setSize(700,200);
-
-        GridBagConstraints c1 = new GridBagConstraints();
-        c1.gridx =0;
-        c1.gridy=0;
-
-        JTextField searchField = new JTextField(20);
-        c1.gridx = 14;
-        c1.gridy = 11;
-        searchPanel.add(searchField,c1); // add search field on search panel
-        mainPanel.add(searchPanel,c1);
-        JButton searchButton = new JButton("Search");
-        c1.gridx = 16;
-        c1.gridy = 11;
-       // c.insets = new Insets(0,20,0,20);
-        searchPanel.add(searchButton,c1); // add search button to search panel
-
-
-
-*/
 
 
 
