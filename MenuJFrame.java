@@ -5,10 +5,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import static com.sun.java.accessibility.util.AWTEventMonitor.addActionListener;
-
-
-public class MenuJFrame {
+public class MenuJFrame implements ActionListener {
 
     JPanel employeeForm;
     JFrame JFrameWindow;
@@ -19,56 +16,57 @@ public class MenuJFrame {
     private Container contentPane;
 
 
-    public MenuJFrame()
+    public MenuJFrame() {
+        JFrame JFrameWindow = new JFrame();
+        JFrameWindow.setVisible(true);
+        JFrameWindow.setTitle("Employee Management System");
+        JFrameWindow.setSize(1000, 600);
+        JFrameWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        // Menu Bar
+        JMenuBar menuBar = new JMenuBar();
+        JFrameWindow.setJMenuBar(menuBar);
+        JMenu file = new JMenu("File");
+        JMenu employees = new JMenu("Employees");
+        JMenu mortgages = new JMenu("Mortgages");
+        JMenuItem exit = new JMenuItem("Exit");
+        exit.addActionListener(this);
+        JMenuItem addEmployee = new JMenuItem("Add Employee");
+        addEmployee.addActionListener(this);
+        JMenuItem editEmployee = new JMenuItem("Edit Employee");
+        JMenuItem deleteEmployee = new JMenuItem("Delete Employee");
+        JMenuItem applyMortgage = new JMenuItem("Apply");
+        JMenuItem viewMortgage = new JMenuItem("View Applications");
+
+        menuBar.add(file);
+        menuBar.add(employees);
+        menuBar.add(mortgages);
+        file.add(exit);
+        employees.add(addEmployee);
+        employees.add(editEmployee);
+        employees.add(deleteEmployee);
+        mortgages.add(applyMortgage);
+        mortgages.add(viewMortgage);
+
+    }
+    // program closes when exit is clicked
+    @Override
+    public void actionPerformed(ActionEvent e) {
+       // System.exit(0);
+
+        if (e.getActionCommand().equals("Exit"))
         {
-            JFrame JFrameWindow = new JFrame();
-            JFrameWindow.setVisible(true);
-            JFrameWindow.setTitle("Employee Management System");
-            JFrameWindow.setSize(1000, 600);
-            JFrameWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-            // Menu Bar
-            JMenuBar menuBar = new JMenuBar();
-            JFrameWindow.setJMenuBar(menuBar);
-            JMenu file = new JMenu("File");
-            JMenu employees = new JMenu("Employees");
-            JMenu mortgages = new JMenu("Mortgages");
-            JMenuItem exit = new JMenuItem("Exit");
-            JMenuItem addEmployee = new JMenuItem("Add Employee");
-            JMenuItem editEmployee = new JMenuItem("Edit Employee");
-            JMenuItem deleteEmployee = new JMenuItem("Delete Employee");
-            JMenuItem applyMortgage = new JMenuItem("Apply");
-            JMenuItem viewMortgage = new JMenuItem("View Applications");
-
-            menuBar.add(file);
-            menuBar.add(employees);
-            menuBar.add(mortgages);
-            file.add(exit);
-            employees.add(addEmployee);
-            employees.add(editEmployee);
-            employees.add(deleteEmployee);
-            mortgages.add(applyMortgage);
-            mortgages.add(viewMortgage);
+            System.exit(0);
+        }
+        else if(e.getActionCommand().equals("Add Employee"))
+        {
+            employeeForm.setVisible(true);
+            employeeForm.validate();
+        }
+    }
 
 
-
-            // Exit Handler program closes when exit is clicked
-            class exitAction implements  ActionListener
-            {
-
-                 @Override public void actionPerformed (ActionEvent e)
-                 {
-                     if(e.getSource() == exit)
-                     {
-                         System.exit(0);
-                     }
-
-                     exit.addActionListener(new exitAction());
-
-                 }
-            }
-
-              class MouseListenerForMenuItems extends MouseAdapter
+              public class MouseListenerForMenuItems extends MouseAdapter
             {
                 public void mouseClicked(MouseEvent e)
                 {
@@ -173,7 +171,7 @@ public class MenuJFrame {
 
                         JFrameWindow.add(employeeForm);
 
-                        employeeForm.setVisible(true);
+                        employeeForm.setVisible(false);
 
 
 
@@ -193,7 +191,7 @@ public class MenuJFrame {
             }
         }
 
-}
+
 
 
 
