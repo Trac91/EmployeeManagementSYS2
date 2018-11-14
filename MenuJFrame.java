@@ -69,7 +69,7 @@ public class MenuJFrame implements ActionListener {
         else if(e.getActionCommand().equals("Edit Employee"))
         {
 
-            EmployeeForm();
+            //EmployeeForm();
             searchPanel();
             JFrameWindow.repaint();
             // search bar appears to find employee to edit
@@ -88,6 +88,7 @@ public class MenuJFrame implements ActionListener {
         else if(e.getActionCommand().equals("Apply"))
         {
             JFrameWindow.revalidate();
+            employeeForm.setVisible(false);
            // JFrameWindow.repaint();
             mortgageForm();
             // Application form appears
@@ -102,7 +103,7 @@ public class MenuJFrame implements ActionListener {
     }
     public class EmployeeForm
     {
-        JFrame JFrameWindow;
+            JFrame JFrameWindow;
             JPanel employeeForm;
             JLabel idLabel, nameLabel,addressLabel,emailLabel,phoneLabel, departmentLabel,jobTitleLabel;
             JTextField idField, nameField, addressField,emailField,phoneField;
@@ -121,13 +122,14 @@ public class MenuJFrame implements ActionListener {
         employeeForm.setBackground(Color.lightGray);
         employeeForm.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.BLACK,1,true),"Employee Details"));
 
-     //   JFrameWindow.pack();
+         //   JFrameWindow.pack();
         // Set constraints to Position components in JPanel
 
         c.gridx = 0; // Referenced from Mr Java Help Youtube
         c.gridy = 0;
         c.anchor = GridBagConstraints.LINE_START;
         c.insets = new Insets(10,20,5,20);
+
 
         //JLabels for Employee Form
         JLabel idLabel = new JLabel("Employee ID");
@@ -175,7 +177,6 @@ public class MenuJFrame implements ActionListener {
         JButton clearButton = new JButton("Clear");
         JButton registerButton = new JButton("Register Employee");
 
-
         c.gridx = 0;
         c.gridy = 7;
         c.anchor = GridBagConstraints.LINE_END;
@@ -211,21 +212,32 @@ public class MenuJFrame implements ActionListener {
         c.gridx =0;
         c.gridy=0;
 
-        JLabel searchLabel= new JLabel("Search Employee eg. Name, ID , Department");
-        c.gridx = 1;
-        c.gridy = 6;
-
+        //JLabel searchLabel= new JLabel("Search Employee eg. Name, ID , Department");
         JTextField searchField = new JTextField(20);
-        c.gridx = 2;
-        c.gridy = 4;
+
 
         JButton searchButton = new JButton("Search");
-        c.gridx = 3;
-        c.gridy = 4;
+
+
         // c.insets = new Insets(0,20,0,20);
-        searchPanel.add(searchField,c); // add search field on search panel
+        searchPanel.add(searchField,c);
+        c.gridx = 0;
+        c.gridy = 2;
+        c.anchor = GridBagConstraints.LINE_START;
+        c.gridwidth=2;
+
+        /*// add search field on search panel
         searchPanel.add(searchLabel,c);
-        searchPanel.add(searchButton,c); // add search button to search panel
+        c.gridx = 1;
+        c.gridy = 2;
+        c.anchor = GridBagConstraints.LINE_START; */
+
+        searchPanel.add(searchButton,c);
+        c.gridx = 1;
+        c.gridy = 2;
+        c.anchor = GridBagConstraints.LINE_END;
+
+        // add search button to search panel
         //searchPanel.setVisible(true);
         Container pane = JFrameWindow.getContentPane();
         pane.add(searchPanel,BorderLayout.PAGE_START);
@@ -239,10 +251,10 @@ public class MenuJFrame implements ActionListener {
         JComboBox numApplicantsBox, statusBox, firstTimeBox, numChildrenBox;
 
         JLabel numApplicants, fName, sName, status, dob,numChildren, firstTimeBuyer,
-             income , additionalIncome, childcare, maintenence,price,loanRequired;
+             income ,additionalIncome, childcare, maintenance,price,loanRequired;
 
         JTextField fNameField, sNameField, dobField, incomeField, additionalIncomeField,
-             childcareField, mainteneceField, priceField, loanRequiredField;
+             childcareField, maintenanceField, priceField, loanRequiredField;
     }
 
     public void mortgageForm()
