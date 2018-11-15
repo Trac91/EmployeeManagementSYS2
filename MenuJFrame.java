@@ -374,7 +374,7 @@ public class MenuJFrame implements ActionListener {
 
              String[] columns = {"Employee ID", "Forename", "Surname", "Address", "Email", "Phone", "Department","Division"};
 
-             Object[][] data = {
+             Object[] [] data = {
                      {"1", "Tracey", "Brosnan", " Killarney", "TB@yahoo.co.uk ", "0891232345", "HR","Accounts"},
              };
              table = new JTable(data,columns);
