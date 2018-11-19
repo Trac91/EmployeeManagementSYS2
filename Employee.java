@@ -1,73 +1,40 @@
-public abstract class Employee {
+public abstract class Employee extends Person {
 
     private String employeeID;
-    private String name;
-    private String address;
-    private int phoneNo;
-    private String email;
+    private Person employee;
 
 
     // No Argument Constructor
     public Employee()
     {
-      this("Unknown", "Unknown", "Unknown", 0, "Unknown");
+      this(new Person(),"Unknown");
 
     }
-    // 5 Argument Constructor //
-    public Employee(String employeeID, String name, String address, int phoneNo, String email){
+    public Employee(Person employee, String employeeID){
         this.employeeID = employeeID;
-        this.name = name;
-        this.address = address;
-        this.phoneNo = phoneNo;
-        this.email = email;
+        this.employee=employee;
     }
+
+    public static void addBranchManager() {
+
+    }
+
 
     // Getters
-    public String getEmployeeID() {
+    public  String getEmployeeID() {
         return employeeID;
-    }
 
-    public String getName() {
-        return name;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public int getPhoneNo() {
-        return phoneNo;
-    }
-
-    public String getEmail() {
-        return email;
     }
     //Setters
     public void setEmployeeID(String employeeID) {
         this.employeeID = employeeID;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public void setPhoneNo(int phoneNo) {
-        this.phoneNo = phoneNo;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
 
     //toString Method
     public String toString()
     {
-        return "Employee ID: " + getEmployeeID()+ "\nName: " + getName() + "\nAddress: " + getAddress() +
-                "\nPhone No: " + getPhoneNo() + "\nEmail: " + getEmail();
+        return employee.toString() + "Employee ID: " + employeeID;
     }
 }
 

@@ -1,16 +1,30 @@
 import javax.swing.*;
-import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.LinkedList;
 
-public class BankApplication extends MenuJFrame {
+public class BankApplication  {
+
 
 
     public static void main(String arg[])
     {
 
-    MenuJFrame guiApp = new MenuJFrame();
+
+        MenuJFrame guiApp = new MenuJFrame();
+
+        BranchManager branchManager = new BranchManager();
+
+        Employee.addBranchManager();
+
+
+
 
 
     }
 
+    public void addBranchManager()
+    {
+
+    }
 
 }
