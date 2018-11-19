@@ -17,6 +17,7 @@ public class BankApplication  {
         //Employee employee;
 
     }
+    /*
     // Save Employees to file
     public static void SaveEmployees(ArrayList<Employee> employees)
     {
@@ -38,5 +39,5 @@ public class BankApplication  {
         ArrayList<Employee> employees = ois.readObject();
         ois.close();
     }
-
+*/
 }
