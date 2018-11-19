@@ -145,7 +145,7 @@ public class MenuJFrame implements ActionListener {
         JTextArea addressField;
         JComboBox divisionField, departmentField;
         JButton clearButton, registerButton;
-        String forename,surname;
+        String forename, surname;
         SearchPanel searchPanel;
 
         public EmployeeForm() {
@@ -201,7 +201,6 @@ public class MenuJFrame implements ActionListener {
 
             // Creates fields/combobox for employee form
             employeeID = new JTextField(5);
-
             forenameField = new JTextField(20);
 
             surnameField = new JTextField(20);
@@ -228,7 +227,7 @@ public class MenuJFrame implements ActionListener {
             surnameField.addActionListener((ActionListener) handler);
             c.gridy++;
             employeeForm.add(addressField, c);
-            addressField.addActionListener((ActionListener )handler);
+            addressField.addActionListener((ActionListener) handler);
             c.gridy++;
             employeeForm.add(emailField, c);
             emailField.addActionListener((ActionListener) handler);
@@ -240,7 +239,7 @@ public class MenuJFrame implements ActionListener {
             departmentField.addActionListener((ActionListener) handler);
             c.gridy++;
             employeeForm.add(divisionField, c);
-            divisionField.addActionListener((ActionListener)handler);
+            divisionField.addActionListener((ActionListener) handler);
             c.gridy++;
 
             // Create Clear/ Register button for employee form
@@ -263,30 +262,30 @@ public class MenuJFrame implements ActionListener {
             JFrameWindow.setVisible(true);
         }
 
-public class handler implements ActionListener{
-            public void actionPerformed(ActionEvent event)
-            
-                String employee ="";
+        public class handler implements ActionListener {
+            public void actionPerformed(ActionEvent event) {
 
-            if(event.getSource() == employeeID)
-                employee=String.format("Employee ID: ",event.getActionCommand());
-            else if(event.getSource()== forenameField)
-                    employee=String.format("Forename:" ,event.getActionCommand());
-            else if(event.getSource()== surnameField)
-                employee=String.format("Surname:" ,event.getActionCommand());
-            else if(event.getSource()== addressField)
-                employee=String.format("Address:" ,event.getActionCommand());
-            else if(event.getSource()== emailField)
-                employee=String.format("Forename:" ,event.getActionCommand());
-            else if(event.getSource()== phoneField)
-                employee=String.format("Phone No:" ,event.getActionCommand());
-            else if(event.getSource()== departmentField)
-                if(event.getSource().equals("Branch Manager"))
-                    employee=String.format("Department:" ,event.getActionCommand());
-            else(event.getSource()== divisionField)
-                employee=String.format("Division:" ,event.getActionCommand());
+                String employee = "";
 
-JOptionPane.showMessageDialog(null,employee);
+                if (event.getSource() == employeeID)
+                    employee = String.format("Employee ID: ", event.getActionCommand());
+                else if (event.getSource() == forenameField)
+                    employee = String.format("Forename:", event.getActionCommand());
+                else if (event.getSource() == surnameField)
+                    employee = String.format("Surname:", event.getActionCommand());
+                else if (event.getSource() == addressField)
+                    employee = String.format("Address:", event.getActionCommand());
+                else if (event.getSource() == emailField)
+                    employee = String.format("Forename:", event.getActionCommand());
+                else if (event.getSource() == phoneField)
+                    employee = String.format("Phone No:", event.getActionCommand());
+                else if (event.getSource() == departmentField)
+                    if (event.getSource().equals("Branch Manager"))
+                        employee = String.format("Department:", event.getActionCommand());
+                    else (event.getSource() == divisionField)
+                employee = String.format("Division:", event.getActionCommand());
+
+                JOptionPane.showMessageDialog(null, employee);
 
             }
 
@@ -295,7 +294,6 @@ JOptionPane.showMessageDialog(null,employee);
         /*JB Advice - Tracey you could create a class called SearchPanel here just as I did above for the EmployeeForm class if you wish
          *Then searchPanel() could  become the constructor for the class and you would create an instance of SearchPanel when
          *you want to create the panel for your GUI*/
-
 
 
         public class mortgageForm {
@@ -307,162 +305,168 @@ JOptionPane.showMessageDialog(null,employee);
                     childcareField, maintenanceField, priceField, loanRequiredField;
 
 
-        public void mortgageForm()
-        {
-            JPanel mortgagePanel = new JPanel(new GridBagLayout());
-            mortgagePanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.BLACK, 1, true), "Mortgage Application"));
-            mortgagePanel.setSize(100, 200);
-            GridBagConstraints c = new GridBagConstraints();
-            c.gridx = 0;
-            c.gridy = 0;
-            c.anchor = GridBagConstraints.LINE_END;
-            c.insets = new Insets(10, 20, 10, 20);
+            public void mortgageForm() {
+                JPanel mortgagePanel = new JPanel(new GridBagLayout());
+                mortgagePanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.BLACK, 1, true), "Mortgage Application"));
+                mortgagePanel.setSize(100, 200);
+                GridBagConstraints c = new GridBagConstraints();
+                c.gridx = 0;
+                c.gridy = 0;
+                c.anchor = GridBagConstraints.LINE_END;
+                c.insets = new Insets(10, 20, 10, 20);
 
-            // create labels
-            JLabel numApplicants = new JLabel("No. of applicants");
-            JLabel status = new JLabel("Marital status");
-            JLabel fName = new JLabel("Forename");
-            JLabel sName = new JLabel("Surname");
-            JLabel dob = new JLabel("Date of birth");
-            JLabel numChildren = new JLabel("No. of dependant children");
-            JLabel firstTimeBuyer = new JLabel("First time buyer");
-            JLabel income = new JLabel("Basic income");
-            JLabel additionalIncome = new JLabel("Additional Income");
-            JLabel childcare = new JLabel("Childcare costs");
-            JLabel maintenance = new JLabel("Maintenance costs");
-            JLabel price = new JLabel("Purchase Price");
-            JLabel loanRequired = new JLabel("Mortgage loan required");
+                // create labels
+                JLabel numApplicants = new JLabel("No. of applicants");
+                JLabel status = new JLabel("Marital status");
+                JLabel fName = new JLabel("Forename");
+                JLabel sName = new JLabel("Surname");
+                JLabel dob = new JLabel("Date of birth");
+                JLabel numChildren = new JLabel("No. of dependant children");
+                JLabel firstTimeBuyer = new JLabel("First time buyer");
+                JLabel income = new JLabel("Basic income");
+                JLabel additionalIncome = new JLabel("Additional Income");
+                JLabel childcare = new JLabel("Childcare costs");
+                JLabel maintenance = new JLabel("Maintenance costs");
+                JLabel price = new JLabel("Purchase Price");
+                JLabel loanRequired = new JLabel("Mortgage loan required");
 
-            //create fields
-            String[] numApp = {"1", "2"};
-            JComboBox numApplicantsCombo = new JComboBox(numApp);
-            String[] statusArray = {"Single", "Married", "Divorced/Separated", "Widowed", "Cohabitant"};
-            JComboBox statusCombo = new JComboBox(statusArray);
-            JTextField fNameField = new JTextField(20);
-            JTextField sNameField = new JTextField(20);
-            // date picker here
+                //create fields
+                String[] numApp = {"1", "2"};
+                JComboBox numApplicantsCombo = new JComboBox(numApp);
+                String[] statusArray = {"Single", "Married", "Divorced/Separated", "Widowed", "Cohabitant"};
+                JComboBox statusCombo = new JComboBox(statusArray);
+                JTextField fNameField = new JTextField(20);
+                JTextField sNameField = new JTextField(20);
+                // date picker here
 
-            String[] numChildrenArray = {"None", "1", "2", "3", "4", "5", "6", "7", "8", "9+"};
-            JComboBox numChildrenCombo = new JComboBox(numChildrenArray);
-            String[] options = {"Yes", "No"};
-            JComboBox firstTimeBuyerCombo = new JComboBox(options);
-            JTextField incomeField = new JTextField(20);
-            JTextField additionalIncomeField = new JTextField(20);
-            JTextField childcareField = new JTextField(20);
-            JTextField maintenanceField = new JTextField(20);
-            JTextField priceField = new JTextField(20);
-            JTextField loanRequiredField = new JTextField(20);
+                String[] numChildrenArray = {"None", "1", "2", "3", "4", "5", "6", "7", "8", "9+"};
+                JComboBox numChildrenCombo = new JComboBox(numChildrenArray);
+                String[] options = {"Yes", "No"};
+                JComboBox firstTimeBuyerCombo = new JComboBox(options);
+                JTextField incomeField = new JTextField(20);
+                JTextField additionalIncomeField = new JTextField(20);
+                JTextField childcareField = new JTextField(20);
+                JTextField maintenanceField = new JTextField(20);
+                JTextField priceField = new JTextField(20);
+                JTextField loanRequiredField = new JTextField(20);
 
-            //add labels
-            mortgagePanel.add(numApplicants, c);
-            c.gridy++;
-            mortgagePanel.add(fName, c);
-            c.gridy++;
-            mortgagePanel.add(sName, c);
-            c.gridy++;
-            mortgagePanel.add(status, c);
-            c.gridy++;
-            mortgagePanel.add(dob, c);
-            c.gridy++;
-            mortgagePanel.add(numChildren, c);
-            c.gridy++;
-            mortgagePanel.add(firstTimeBuyer, c);
-            c.gridy++;
-            mortgagePanel.add(income, c);
-            c.gridy++;
-            mortgagePanel.add(additionalIncome, c);
-            c.gridy++;
-            mortgagePanel.add(childcare, c);
-            c.gridy++;
-            mortgagePanel.add(maintenance, c);
-            c.gridy++;
-            mortgagePanel.add(price, c);
-            c.gridy++;
-            mortgagePanel.add(loanRequired, c);
-            c.gridy++;
+                //add labels
+                mortgagePanel.add(numApplicants, c);
+                c.gridy++;
+                mortgagePanel.add(fName, c);
+                c.gridy++;
+                mortgagePanel.add(sName, c);
+                c.gridy++;
+                mortgagePanel.add(status, c);
+                c.gridy++;
+                mortgagePanel.add(dob, c);
+                c.gridy++;
+                mortgagePanel.add(numChildren, c);
+                c.gridy++;
+                mortgagePanel.add(firstTimeBuyer, c);
+                c.gridy++;
+                mortgagePanel.add(income, c);
+                c.gridy++;
+                mortgagePanel.add(additionalIncome, c);
+                c.gridy++;
+                mortgagePanel.add(childcare, c);
+                c.gridy++;
+                mortgagePanel.add(maintenance, c);
+                c.gridy++;
+                mortgagePanel.add(price, c);
+                c.gridy++;
+                mortgagePanel.add(loanRequired, c);
+                c.gridy++;
 
-            //addfields
-            c.gridx = 1;
-            c.gridy = 0;
-            c.anchor = GridBagConstraints.LINE_END;
-            mortgagePanel.add(numApplicantsCombo, c);
-            c.gridy++;
-            mortgagePanel.add(fNameField, c);
-            c.gridy++;
-            mortgagePanel.add(sNameField, c);
-            c.gridy++;
-            mortgagePanel.add(statusCombo, c);
-            c.gridy++;
-            mortgagePanel.add(dob, c);
-            c.gridy++;
-            mortgagePanel.add(numChildrenCombo, c);
-            c.gridy++;
-            mortgagePanel.add(firstTimeBuyerCombo, c);
-            c.gridy++;
-            mortgagePanel.add(incomeField, c);
-            c.gridy++;
-            mortgagePanel.add(additionalIncomeField, c);
-            c.gridy++;
-            mortgagePanel.add(childcareField, c);
-            c.gridy++;
-            mortgagePanel.add(maintenanceField, c);
-            c.gridy++;
-            mortgagePanel.add(priceField, c);
-            c.gridy++;
-            mortgagePanel.add(loanRequiredField, c);
-            c.gridy++;
+                //addfields
+                c.gridx = 1;
+                c.gridy = 0;
+                c.anchor = GridBagConstraints.LINE_END;
+                mortgagePanel.add(numApplicantsCombo, c);
+                c.gridy++;
+                mortgagePanel.add(fNameField, c);
+                c.gridy++;
+                mortgagePanel.add(sNameField, c);
+                c.gridy++;
+                mortgagePanel.add(statusCombo, c);
+                c.gridy++;
+                mortgagePanel.add(dob, c);
+                c.gridy++;
+                mortgagePanel.add(numChildrenCombo, c);
+                c.gridy++;
+                mortgagePanel.add(firstTimeBuyerCombo, c);
+                c.gridy++;
+                mortgagePanel.add(incomeField, c);
+                c.gridy++;
+                mortgagePanel.add(additionalIncomeField, c);
+                c.gridy++;
+                mortgagePanel.add(childcareField, c);
+                c.gridy++;
+                mortgagePanel.add(maintenanceField, c);
+                c.gridy++;
+                mortgagePanel.add(priceField, c);
+                c.gridy++;
+                mortgagePanel.add(loanRequiredField, c);
+                c.gridy++;
 
-            Container pane = JFrameWindow.getContentPane();
-            pane.add(mortgagePanel);
-            mortgagePanel.setVisible(true);
-            JFrameWindow.setVisible(true);
-        }
+                Container pane = JFrameWindow.getContentPane();
+                pane.add(mortgagePanel);
+                mortgagePanel.setVisible(true);
+                JFrameWindow.setVisible(true);
+            }
 
-        public class EmployeeTable extends JFrame {
-            JTable table;
+            public class EmployeeTable extends JFrame {
+                JTable table;
 
-            public EmployeeTable() {
+                public EmployeeTable() {
 
-                String[] columns = {"Employee ID", "Forename", "Surname", "Address", "Email", "Phone", "Department", "Division"};
+                    String[] columns = {"Employee ID", "Forename", "Surname", "Address", "Email", "Phone", "Department", "Division"};
 
-                /*JB Advice - the values below are perfect for testing purposes but, in reality, at this point the table will
-                 *be populated with data of the Employee objects that matched your search criteria when the "Search" button
-                 *was pressed, which are obtained by traversing through the ArrayList of Employee objects*/
+                    /*JB Advice - the values below are perfect for testing purposes but, in reality, at this point the table will
+                     *be populated with data of the Employee objects that matched your search criteria when the "Search" button
+                     *was pressed, which are obtained by traversing through the ArrayList of Employee objects*/
 
 
-                Object[][] data = {
-                        {"1", "Tracey", "Brosnan", " Killarney", "TB@yahoo.co.uk ", "0891232345", "HR", "Accounts"},
-                        {"1", "Tracey", "Brosnan", " Killarney", "TB@yahoo.co.uk ", "0891232345", "HR", "Accounts"},
-                        {"1", "Tracey", "Brosnan", " Killarney", "TB@yahoo.co.uk ", "0891232345", "HR", "Accounts"},
-                        {"1", "Tracey", "Brosnan", " Killarney", "TB@yahoo.co.uk ", "0891232345", "HR", "Accounts"},
-                        {"1", "Tracey", "Brosnan", " Killarney", "TB@yahoo.co.uk ", "0891232345", "HR", "Accounts"},
-                        {"1", "Tracey", "Brosnan", " Killarney", "TB@yahoo.co.uk ", "0891232345", "HR", "Accounts"}
-                };
-                table = new JTable(data, columns);
+                    Object[][] data = {
+                            {"1", "Tracey", "Brosnan", " Killarney", "TB@yahoo.co.uk ", "0891232345", "HR", "Accounts"},
+                            {"1", "Tracey", "Brosnan", " Killarney", "TB@yahoo.co.uk ", "0891232345", "HR", "Accounts"},
+                            {"1", "Tracey", "Brosnan", " Killarney", "TB@yahoo.co.uk ", "0891232345", "HR", "Accounts"},
+                            {"1", "Tracey", "Brosnan", " Killarney", "TB@yahoo.co.uk ", "0891232345", "HR", "Accounts"},
+                            {"1", "Tracey", "Brosnan", " Killarney", "TB@yahoo.co.uk ", "0891232345", "HR", "Accounts"},
+                            {"1", "Tracey", "Brosnan", " Killarney", "TB@yahoo.co.uk ", "0891232345", "HR", "Accounts"}
+                    };
+                    table = new JTable(data, columns);
 
-                //The code below added by JB, adapted from https://stackoverflow.com/questions/5775602/jtable-set-column-size-problem
-                //Alters the column width of table columns so they render reasonably first time
+                    //The code below added by JB, adapted from https://stackoverflow.com/questions/5775602/jtable-set-column-size-problem
+                    //Alters the column width of table columns so they render reasonably first time
 
-                TableColumn column = null;
+                    TableColumn column = null;
 
-                for (int i = 0; i < columns.length; i++) {
-                    column = table.getColumnModel().getColumn(i);
+                    for (int i = 0; i < columns.length; i++) {
+                        column = table.getColumnModel().getColumn(i);
 
-                    column.setPreferredWidth(100);
+                        column.setPreferredWidth(100);
+                    }
+
+                    JScrollPane scrollPane = new JScrollPane(table);
+                    add(scrollPane, BorderLayout.CENTER);
+
+                    setLocation(500, 300);
+                    setSize(column.getPreferredWidth() * columns.length, 200);
+
+                    setVisible(true);
+
                 }
-
-                JScrollPane scrollPane = new JScrollPane(table);
-                add(scrollPane, BorderLayout.CENTER);
-
-                setLocation(500, 300);
-                setSize(column.getPreferredWidth() * columns.length, 200);
-
-                setVisible(true);
 
             }
         }
 
+
     }
+
+}
+
+
 
 
 

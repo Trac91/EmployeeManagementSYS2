@@ -43,7 +43,7 @@ public class Person {
         return address;
     }
 
-    public void setAddress(String addressField) {
+    public void setAddress(String address) {
         this.address = getAddress();
     }
 
@@ -51,7 +51,7 @@ public class Person {
         return email;
     }
 
-    public void setEmail(String emailField) {
+    public void setEmail(String email) {
         this.email = email;
     }
 
@@ -65,7 +65,7 @@ public class Person {
 
     @Override
     public String toString() {
-        return "\n Forename: " + getForename() + "\nSurname" + getSurname() + "\nAddress" + getAddress() + "\nEmail " + getEmail() + "\nPhone No " + getPhoneNo();
+        return "\n Forename: " + forename + "\nSurname" + surname + "\nAddress" + address + "\nEmail " + email + "\nPhone No " + phoneNo;
     }
 
 }

@@ -15,10 +15,6 @@ public abstract class Employee extends Person {
         this.employee=employee;
     }
 
-    public static void addBranchManager() {
-
-    }
-
 
     // Getters
     public  String getEmployeeID() {

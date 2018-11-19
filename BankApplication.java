@@ -4,26 +4,27 @@ import java.util.LinkedList;
 
 public class BankApplication  {
 
-
-
     public static void main(String arg[])
     {
 
-
         MenuJFrame guiApp = new MenuJFrame();
+        ArrayList<Employee> employees = new ArrayList<>();
+        BranchManager[] branchManager = new BranchManager[1];
+        ArrayList<Accounts> account = new ArrayList<>();
+        ArrayList<Mortgage> mortgages= new ArrayList<>();
 
-        BranchManager branchManager = new BranchManager();
+        Employee employee;
+        Accounts accounts;
+        Mortgage mortgage;
 
-        Employee.addBranchManager();
+        String forename, surname, address, email, phoneNo;
 
 
 
 
 
-    }
 
-    public void addBranchManager()
-    {
+
 
     }
 
