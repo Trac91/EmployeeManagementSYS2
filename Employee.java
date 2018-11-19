@@ -15,6 +15,10 @@ public abstract class Employee extends Person {
         this.employee=employee;
     }
 
+    public static void add(Employee employee) {
+        // need to code this *************
+    }
+
 
     // Getters
     public  String getEmployeeID() {

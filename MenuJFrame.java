@@ -7,11 +7,14 @@ import java.util.logging.Handler;
 import javax.swing.table.TableColumn; //added by JB to manipulate width of table columns
 
 
+
 public class MenuJFrame implements ActionListener {
 
-    JTextField forenameField, surnameField, email;
-    String forename = "";
-    String surname = "";
+    JTextField forenameField;
+    JTextField surnameField;
+    String email;
+    String forename;
+    String surname ;
     JTextArea output = new JTextArea();
     //JPanel employeeForm;
     JFrame JFrameWindow;
@@ -23,6 +26,8 @@ public class MenuJFrame implements ActionListener {
     EmployeeForm empForm;
     JPanel searchPanel;
     String address = "";
+    ArrayList<Employee> employee = new ArrayList<Employee>();
+    Handler handler = new Handler();
 
     public MenuJFrame() {
         JFrameWindow = new JFrame();
@@ -69,7 +74,6 @@ public class MenuJFrame implements ActionListener {
         {
             System.exit(0);
         }
-
         /*JB Added/Modified code here to ensure the Add/Edit Employees forms rendered successfully*/
 
         else if (e.getActionCommand().equals("Add Employee")) // Add employee form appears
@@ -132,7 +136,6 @@ public class MenuJFrame implements ActionListener {
         }
     }
 
-
     /*JB - modified existing code to create an EmployeeForm class to ensure that the panel employeeForm
      *would be globally accessible within the event-handling methods so that existing forms could be
      *removed*/
@@ -145,8 +148,9 @@ public class MenuJFrame implements ActionListener {
         JTextArea addressField;
         JComboBox divisionField, departmentField;
         JButton clearButton, registerButton;
-        String forename, surname;
+        String forename, surname, empID, phoneNo;
         SearchPanel searchPanel;
+        Employee employee;
 
         public EmployeeForm() {
 
@@ -211,9 +215,6 @@ public class MenuJFrame implements ActionListener {
             departmentField = new JComboBox(departments);
             divisionField = new JComboBox(jobTitles);
 
-            Handler handler;
-            handler = new Handler();
-
 
             //add fields/combo box
             employeeForm.add(employeeID, c);
@@ -244,6 +245,7 @@ public class MenuJFrame implements ActionListener {
 
             // Create Clear/ Register button for employee form
             clearButton = new JButton("Clear");
+            clearButton.addActionListener((ActionListener) handler);
             registerButton = new JButton("Register Employee");
 
             c.gridx = 0;
@@ -262,7 +264,47 @@ public class MenuJFrame implements ActionListener {
             JFrameWindow.setVisible(true);
         }
 
-        public class handler implements ActionListener {
+        private class handler implements  ActionListener {
+
+            public void actionPerformed(ActionEvent event) {
+
+
+                empID = employeeID.getText();
+                forename = forenameField.getText();
+                surname = surnameField.getText();
+                address = addressField.getText();
+                email = emailField.getText();
+                phoneNo = phoneField.getText();
+
+                Employee employee = new Employee(new Person, forename,surname,address,email,phoneNo,empID);
+
+                while(event.getSource() == registerButton)
+                {
+                    Employee.add(employee);
+                    empID = employeeID.getText();
+                    forename = forenameField.getText();
+                    surname = surnameField.getText();
+                    address = addressField.getText();
+                    email = emailField.getText();
+                    phoneNo = phoneField.getText();
+
+                    Employee.add(employee);
+
+                    employeeID.setText("");
+                    forenameField.setText("");
+                    surnameField.setText("");
+                    addressField.setText("");
+                    emailField.setText("");
+                    phoneField.setText("");
+
+                    JOptionPane.showMessageDialog(null, "Employee added");
+
+
+                 }
+
+        }
+
+       /* public class handler implements ActionListener {
             public void actionPerformed(ActionEvent event) {
 
                 String employee = "";
@@ -288,7 +330,7 @@ public class MenuJFrame implements ActionListener {
                 JOptionPane.showMessageDialog(null, employee);
 
             }
-
+*/
         }
 
         /*JB Advice - Tracey you could create a class called SearchPanel here just as I did above for the EmployeeForm class if you wish
@@ -427,7 +469,8 @@ public class MenuJFrame implements ActionListener {
                      *was pressed, which are obtained by traversing through the ArrayList of Employee objects*/
 
 
-                    Object[][] data = {
+                    ArrayList<Employee> employees = new ArrayList<>();
+                    /*Object[][] data = {
                             {"1", "Tracey", "Brosnan", " Killarney", "TB@yahoo.co.uk ", "0891232345", "HR", "Accounts"},
                             {"1", "Tracey", "Brosnan", " Killarney", "TB@yahoo.co.uk ", "0891232345", "HR", "Accounts"},
                             {"1", "Tracey", "Brosnan", " Killarney", "TB@yahoo.co.uk ", "0891232345", "HR", "Accounts"},
@@ -435,7 +478,9 @@ public class MenuJFrame implements ActionListener {
                             {"1", "Tracey", "Brosnan", " Killarney", "TB@yahoo.co.uk ", "0891232345", "HR", "Accounts"},
                             {"1", "Tracey", "Brosnan", " Killarney", "TB@yahoo.co.uk ", "0891232345", "HR", "Accounts"}
                     };
-                    table = new JTable(data, columns);
+                    */
+
+                    table = new JTable(employees, columns);
 
                     //The code below added by JB, adapted from https://stackoverflow.com/questions/5775602/jtable-set-column-size-problem
                     //Alters the column width of table columns so they render reasonably first time
@@ -465,6 +510,7 @@ public class MenuJFrame implements ActionListener {
     }
 
 }
+
 
 
 

@@ -23,6 +23,10 @@ public class Person {
 
     }
 
+    public Person(String forename, String surname, String address, String email, String phoneNo, String empID) {
+        return;
+    }
+
     public String getSurname() {
         return surname;
     }
