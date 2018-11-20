@@ -3,9 +3,10 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-public class BankApplication<employee> {
+public class BankApplication{
 
     static ArrayList<Employee> employee = new ArrayList<>();
+    static ArrayList<Mortgage> mortgages = new ArrayList<>();
 
     public static void main(String arg[])
     {

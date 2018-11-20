@@ -188,7 +188,7 @@ public class MenuJFrame implements ActionListener {
         }
         /*JB Added/Modified code here to ensure the Add/Edit Employees forms rendered successfully*/
 
-       else if (e.getActionCommand().equals("Add Employee")) // Add employee form appears
+      else if (e.getActionCommand().equals("Add Employee")) // Add employee form appears
         {
             if (empForm != null) {
                 //System.out.println(JFrameWindow);
@@ -253,7 +253,7 @@ public class MenuJFrame implements ActionListener {
             myFrame.add(mortgageForm);
         }
 
-        /*JB - modified existing code to create an EmployeeForm class to ensure that the panel employeeForm
+      /*JB - modified existing code to create an EmployeeForm class to ensure that the panel employeeForm
          *would be globally accessible within the event-handling methods so that existing forms could be
          *removed*/
     }
@@ -312,7 +312,7 @@ public class MenuJFrame implements ActionListener {
 
             if(event.getSource()==applyMortgage)
             {
-
+                myFrame.add(mortgageForm);
             }
         } // End action Event
     } // End handler

@@ -5,7 +5,6 @@ public  class Employee extends Person {
     private String employeeID;
     private Person employee;
 
-
     // No Argument Constructor
     public Employee() {
         this(new Person(), "Unknown");
@@ -20,36 +19,26 @@ public  class Employee extends Person {
     public static void addEmployee(ArrayList<Employee> employee) {
 
         // need to code this *************
-
-
     }
-
 
     public static void addEmployee(Employee employee) {
 
     }
-
-
     // Getters
     public String getEmployeeID() {
         return employeeID;
-
     }
-
     //Setters
     public void setEmployeeID(String employeeID) {
         this.employeeID = employeeID;
     }
 
-
     //toString Method
-
-
-
 
     public String toString() {
         return employee.toString() + "Employee ID: " + employeeID;
     }
+
 
 }
 
