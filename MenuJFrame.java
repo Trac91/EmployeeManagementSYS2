@@ -22,15 +22,14 @@ public class MenuJFrame implements ActionListener {
     int phoneNoInt;
     ArrayList<Employee> allEmployees = new ArrayList<>(); //array list to hold all the Employee objects in the system
 
-
     JPanel employeeForm;
     JLabel idLabel, nameLabel, addressLabel, emailLabel, phoneLabel, departmentLabel, jobTitleLabel;
     JTextField employeeID, surnameField, forenameField, emailField, phoneField, addressField;
     JComboBox divisionField, departmentField;
     JButton clearButton, registerButton, clearButton2, submitButton;
-    String forename, surname, empID, phoneNo, numApp, dob, income, additionalIncome, childcare, maintenance, price, loanRequired;
+    String forename, surname, empID, phoneNo,  dob, income, additionalIncome, department, division, price, loanRequired;
     // SearchPanel searchPanel;
-    //Employee employee;
+    Employee employee;
     JFrame myFrame;
 
     JPanel mortgageForm;
@@ -38,8 +37,7 @@ public class MenuJFrame implements ActionListener {
     JComboBox numApplicantsBox, statusBox, firstTimeBox, numChildrenBox;
     JLabel numApplicants;
 
-    JTextField fNameField, sNameField, dobField, incomeField, additionalIncomeField,
-            childcareField, maintenanceField, priceField, loanRequiredField;
+    JTextField fNameField, sNameField, dobField, incomeField, additionalIncomeField, priceField, loanRequiredField;
     ArrayList<Mortgage> mortgages = new ArrayList<>();
 
     public MenuJFrame() {
@@ -49,7 +47,9 @@ public class MenuJFrame implements ActionListener {
         //This means it is now available to the actionPerformed() method and you can do searches,
         //add new employees, delete and edit employees
 
+
         myFrame = new JFrame();
+        employee.addEmployee();
         myFrame.setTitle("Employee Management System");
         myFrame.setSize(1000, 800);
         myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -92,7 +92,7 @@ public class MenuJFrame implements ActionListener {
 
         JPanel employeeForm;
 
-        //public void addEmployeeForm() {
+
         public EmployeeForm() {
 
 
@@ -114,7 +114,8 @@ public class MenuJFrame implements ActionListener {
 
             //JLabels for Employee Form
             idLabel = new JLabel("Employee ID");
-            nameLabel = new JLabel("Name");
+            JLabel forenameLabel = new JLabel("Forename");
+            JLabel surnameLabel = new JLabel("Surname");
             addressLabel = new JLabel("Address");
             emailLabel = new JLabel("Email");
             phoneLabel = new JLabel("Phone No.");
@@ -123,7 +124,9 @@ public class MenuJFrame implements ActionListener {
             //add Jlabels
             employeeForm.add(idLabel, c);
             c.gridy++; // Increments and moves to row below
-            employeeForm.add(nameLabel, c);
+            employeeForm.add(forenameLabel, c);
+            c.gridy++;
+            employeeForm.add(surnameLabel, c);
             c.gridy++;
             employeeForm.add(addressLabel, c);
             c.gridy++;
@@ -155,34 +158,35 @@ public class MenuJFrame implements ActionListener {
 
             //add fields/combo box
             employeeForm.add(employeeID, c);
-            employeeID.addActionListener((ActionListener) handler);
+            employeeID.addActionListener(handler);
             c.gridy++;
             employeeForm.add(forenameField, c);
-            forenameField.addActionListener((ActionListener) handler);
+            forenameField.addActionListener( handler);
             c.gridy++;
             employeeForm.add(surnameField, c);
-            surnameField.addActionListener((ActionListener) handler);
+            surnameField.addActionListener(handler);
             c.gridy++;
             employeeForm.add(addressField, c);
-            addressField.addActionListener((ActionListener) handler);
+            addressField.addActionListener(handler);
             c.gridy++;
             employeeForm.add(emailField, c);
-            emailField.addActionListener((ActionListener) handler);
+            emailField.addActionListener(handler);
             c.gridy++;
             employeeForm.add(phoneField, c);
-            phoneField.addActionListener((ActionListener) handler);
+            phoneField.addActionListener(handler);
             c.gridy++;
             employeeForm.add(departmentField, c);
-            departmentField.addActionListener((ActionListener) handler);
+            departmentField.addActionListener(handler);
             c.gridy++;
             employeeForm.add(divisionField, c);
-            divisionField.addActionListener((ActionListener) handler);
+            divisionField.addActionListener( handler);
             c.gridy++;
 
             // Create Clear/ Register button for employee form
             clearButton = new JButton("Clear");
-            clearButton.addActionListener((ActionListener) handler);
+            clearButton.addActionListener( handler);
             registerButton = new JButton("Register Employee");
+            registerButton.addActionListener(handler);
 
             c.gridx = 0;
             c.gridy = 10;
@@ -323,10 +327,6 @@ public class MenuJFrame implements ActionListener {
         /*JB - modified existing code to create an EmployeeForm class to ensure that the panel employeeForm
          *would be globally accessible within the event-handling methods so that existing forms could be
          *removed*/
-
-        /*JB - modified existing code to create an EmployeeForm class to ensure that the panel employeeForm
-         *would be globally accessible within the event-handling methods so that existing forms could be
-         *removed*/
     }
 
     public class Handler implements ActionListener {
@@ -334,26 +334,42 @@ public class MenuJFrame implements ActionListener {
         public void actionPerformed(ActionEvent event) {
 
 
-            empID = employeeID.getText();
+           empID = employeeID.getText();
             forename = forenameField.getText();
             surname = surnameField.getText();
             address = addressField.getText();
             email = emailField.getText();
             phoneNo = phoneField.getText();
+            department = (String) departmentField.getSelectedItem();
+            division = (String) divisionField.getSelectedItem();
+
             int phoneNoInt = Integer.parseInt(phoneField.getText());
 
-            Employee employee = new Employee(new Person(forename, surname, address, email, phoneNoInt), empID);
+          //  Employee employee = new Employee(new Person(forename, surname, address, email, phoneNoInt), empID);
 
             if (event.getSource() == registerButton) {
-                Employee.addEmployee(employee);
+               // Employee.addEmployee(employee);
                 empID = employeeID.getText();
                 forename = forenameField.getText();
                 surname = surnameField.getText();
                 address = addressField.getText();
                 email = emailField.getText();
                 phoneNo = phoneField.getText();
+                department = (String) departmentField.getSelectedItem();
+                division = (String) divisionField.getSelectedItem();
 
-                Employee.addEmployee(employee);
+                Employee e = new Employee(new Person( forename,  surname,  address,email, phoneNo),empID, department,division);
+
+                allEmployees.add(e);
+
+                displayEmployees();
+
+                System.out.println("Employee added");
+                JOptionPane.showMessageDialog(null, "Employee added");
+
+                if(event.getSource()==clearButton)
+                {
+
 
                 employeeID.setText("");
                 forenameField.setText("");
@@ -361,9 +377,7 @@ public class MenuJFrame implements ActionListener {
                 addressField.setText("");
                 emailField.setText("");
                 phoneField.setText("");
-
-                JOptionPane.showMessageDialog(null, "Employee added");
-
+                 }
 
             } // End if registered button
 
@@ -415,7 +429,7 @@ public class MenuJFrame implements ActionListener {
              *was pressed, which are obtained by traversing through the ArrayList of Employee objects*/
 
 
-            ArrayList<Employee> employees = new ArrayList<>();
+            ArrayList<Employee> allemployees = new ArrayList<>();
             Object[][] data = {
                     {"1", "Tracey", "Brosnan", " Killarney", "TB@yahoo.co.uk ", "0891232345", "HR", "Accounts"},
                     {"1", "Tracey", "Brosnan", " Killarney", "TB@yahoo.co.uk ", "0891232345", "HR", "Accounts"},
@@ -592,6 +606,17 @@ public class MenuJFrame implements ActionListener {
         } // End Mortgage table constructor
 
 
+    }
+
+
+    public void displayEmployees()
+    {
+        String employeeDetails ="";
+        for(Employee e : allEmployees)
+        {
+            System.out.println("Emp ID" + e.getEmployeeID() + "Dep" + e.getDepartment() + e.getDivision() + e.getEmployee());
+        }
+        JOptionPane.showMessageDialog(null, employeeDetails);
     }
 
 }// End MortgageTable

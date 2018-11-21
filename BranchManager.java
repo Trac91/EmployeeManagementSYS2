@@ -17,7 +17,7 @@ public class BranchManager extends Employee {
 
     public BranchManager(Person employee, String employeeID, String department) {
 
-        super(employee, employeeID);
+        //super(employee, employeeID);
         this.department=department;
 
     }
