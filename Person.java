@@ -27,6 +27,12 @@ public class Person {
         return;
     }
 
+    public Person(String forename, String surname)
+    {
+        this.forename=forename;
+        this.surname=surname;
+    }
+
     public String getSurname() {
         return surname;
     }
@@ -69,7 +75,7 @@ public class Person {
 
     @Override
     public String toString() {
-        return "\n Forename: " + forename + "\nSurname" + surname + "\nAddress" + address + "\nEmail " + email + "\nPhone No " + phoneNo;
+        return "\n Forename: " + getForename() + "\nSurname" + getSurname() + "\nAddress" + getAddress() + "\nEmail " + getEmail() + "\nPhone No " + getPhoneNo();
     }
 
 }

@@ -36,7 +36,7 @@ public  class Employee extends Person {
     //toString Method
 
     public String toString() {
-        return employee.toString() + "Employee ID: " + employeeID;
+        return employee.toString() + "Employee ID: " + getEmployeeID();
     }
 
 

@@ -3,6 +3,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn; //added by JB to manipulate width of table columns
 
 
@@ -10,7 +11,7 @@ public class MenuJFrame implements ActionListener {
 
     String email;
 
-    JMenu file, employees, mortgages;
+    JMenu file, employees;
     JMenuItem exit, addEmployee, editEmployee, deleteEmployee, applyMortgage, viewMortgages;
     JButton addEmployeeButton;
     GridBagConstraints c; //JB removed instantiation of constraints object here - instead do it within EmployeeForm() constructor
@@ -25,7 +26,7 @@ public class MenuJFrame implements ActionListener {
     JLabel idLabel, nameLabel, addressLabel, emailLabel, phoneLabel, departmentLabel, jobTitleLabel;
     JTextField employeeID, surnameField, forenameField, emailField, phoneField, addressField;
     JComboBox divisionField, departmentField;
-    JButton clearButton, registerButton;
+    JButton clearButton, registerButton,clearButton2,submitButton;
     String forename, surname, empID, phoneNo, numApp, dob, income, additionalIncome, childcare,maintenance,price, loanRequired;
    // SearchPanel searchPanel;
     //Employee employee;
@@ -37,7 +38,7 @@ public class MenuJFrame implements ActionListener {
 
     JTextField fNameField, sNameField, dobField, incomeField, additionalIncomeField,
             childcareField, maintenanceField, priceField, loanRequiredField;
-
+    ArrayList<Mortgage> mortgages= new ArrayList<>();
 
     public MenuJFrame() {
         myFrame = new JFrame();
@@ -296,30 +297,48 @@ public class MenuJFrame implements ActionListener {
 
             } // End if registered button
 
-            numApp=numApplicants.getText();
-            forename = fNameField.getText();
-            surname = sNameField.getText();
-            String status = (String)statusBox.getSelectedItem();
-            dob = dobField.getText();
-            String numChildren = (String)numChildrenBox.getSelectedItem();
-            String firstTimeBuyer = (String)firstTimeBox.getSelectedItem();
-            income =incomeField.getText();
-            additionalIncome = additionalIncomeField.getText();
-            childcare = childcareField.getText();
-            maintenance = maintenanceField.getText();
-            price = priceField.getText();
-            loanRequired=loanRequiredField.getText();
-
-            if(event.getSource()==applyMortgage)
+            if(event.getSource() == submitButton)
             {
-                myFrame.add(mortgageForm);
+               // numApp=numApplicants.getText();
+                forename = fNameField.getText();
+                surname = sNameField.getText();
+                String status = (String)statusBox.getSelectedItem();
+                dob = dobField.getText();
+                String numChildren = (String)numChildrenBox.getSelectedItem();
+                int numChildrenInt = Integer.parseInt(numChildren);
+                String firstTimeBuyer = (String)firstTimeBox.getSelectedItem();
+                income =incomeField.getText();
+                int incomeInt = Integer.parseInt(incomeField.getText());
+                additionalIncome = additionalIncomeField.getText();
+                int additionInt = Integer.parseInt(additionalIncomeField.getText());
+                price = priceField.getText();
+                int priceInt = Integer.parseInt(priceField.getText());
+                loanRequired=loanRequiredField.getText();
+                int loanInt = Integer.parseInt(loanRequiredField.getText());
+
+                Mortgage m = new Mortgage(forename,surname,status,dob,numChildren,firstTimeBuyer,income,additionalIncome,price,loanRequired);
+
+                Mortgage.add(m);
+
+                JOptionPane.showMessageDialog(null, "Mortgage Inquiry Added");
+
+
+
             }
+
+            if(event.getActionCommand().equals("View Application")){
+                displayMortgages();
+            }
+
+
+
         } // End action Event
     } // End handler
 
     /*JB Advice - Tracey you could create a class called SearchPanel here just as I did above for the EmployeeForm class if you wish
      *Then searchPanel() could  become the constructor for the class and you would create an instance of SearchPanel when
      *you want to create the panel for your GUI*/
+
 
     public class EmployeeTable extends JFrame {
         JTable table;
@@ -333,7 +352,7 @@ public class MenuJFrame implements ActionListener {
              *was pressed, which are obtained by traversing through the ArrayList of Employee objects*/
 
 
-            // ArrayList<Employee> employees = new ArrayList<>();
+             ArrayList<Employee> employees = new ArrayList<>();
             Object[][] data = {
                     {"1", "Tracey", "Brosnan", " Killarney", "TB@yahoo.co.uk ", "0891232345", "HR", "Accounts"},
                     {"1", "Tracey", "Brosnan", " Killarney", "TB@yahoo.co.uk ", "0891232345", "HR", "Accounts"},
@@ -380,7 +399,6 @@ public class MenuJFrame implements ActionListener {
         c.insets = new Insets(10, 20, 10, 20);
 
         // create labels
-        JLabel numApplicants = new JLabel("No. of applicants");
         JLabel status = new JLabel("Marital status");
         JLabel fName = new JLabel("Forename");
         JLabel sName = new JLabel("Surname");
@@ -389,14 +407,11 @@ public class MenuJFrame implements ActionListener {
         JLabel firstTimeBuyer = new JLabel("First time buyer");
         JLabel income = new JLabel("Basic income");
         JLabel additionalIncome = new JLabel("Additional Income");
-        JLabel childcare = new JLabel("Childcare costs");
-        JLabel maintenance = new JLabel("Maintenance costs");
         JLabel price = new JLabel("Purchase Price");
         JLabel loanRequired = new JLabel("Mortgage loan required");
 
         //create fields
-        String[] numApp = {"1", "2"};
-        JComboBox numApplicantsCombo = new JComboBox(numApp);
+
         String[] statusArray = {"Single", "Married", "Divorced/Separated", "Widowed", "Cohabitant"};
         JComboBox statusCombo = new JComboBox(statusArray);
         JTextField fNameField = new JTextField(20);
@@ -409,8 +424,6 @@ public class MenuJFrame implements ActionListener {
         JComboBox firstTimeBuyerCombo = new JComboBox(options);
         JTextField incomeField = new JTextField(20);
         JTextField additionalIncomeField = new JTextField(20);
-        JTextField childcareField = new JTextField(20);
-        JTextField maintenanceField = new JTextField(20);
         JTextField priceField = new JTextField(20);
         JTextField loanRequiredField = new JTextField(20);
 
@@ -424,8 +437,6 @@ public class MenuJFrame implements ActionListener {
         mortgagePanel.add(firstTimeBuyer, c);c.gridy++;
         mortgagePanel.add(income, c);c.gridy++;
         mortgagePanel.add(additionalIncome, c);c.gridy++;
-        mortgagePanel.add(childcare, c);c.gridy++;
-        mortgagePanel.add(maintenance, c);c.gridy++;
         mortgagePanel.add(price, c);c.gridy++;
         mortgagePanel.add(loanRequired, c);c.gridy++;
 
@@ -433,7 +444,6 @@ public class MenuJFrame implements ActionListener {
         c.gridx = 1;
         c.gridy = 0;
         c.anchor = GridBagConstraints.LINE_END;
-        mortgagePanel.add(numApplicantsCombo, c);c.gridy++;
         mortgagePanel.add(fNameField, c);c.gridy++;
         mortgagePanel.add(sNameField, c);c.gridy++;
         mortgagePanel.add(statusCombo, c);c.gridy++;
@@ -447,6 +457,20 @@ public class MenuJFrame implements ActionListener {
         mortgagePanel.add(priceField, c);c.gridy++;
         mortgagePanel.add(loanRequiredField, c);c.gridy++;
 
+        JButton clearButton2 = new JButton("Clear");
+        clearButton.addActionListener( handler);
+        JButton submitButton = new JButton("Register Employee");
+        submitButton.addActionListener(handler);
+
+        c.gridx = 0;
+        c.gridy = 7;
+        c.anchor = GridBagConstraints.LINE_END;
+        c.insets = new Insets(20, 20, 20, 20);
+        mortgageForm.add(clearButton2, c);
+        c.gridx = 1;
+        c.gridy = 7;
+        c.anchor = GridBagConstraints.LINE_END;
+        mortgageForm.add(submitButton, c);
         Container pane = myFrame.getContentPane();
         pane.add(mortgagePanel);
         mortgagePanel.setVisible(true);
@@ -489,6 +513,21 @@ public class MenuJFrame implements ActionListener {
 
 
     } // End MortgageTable
+
+    private void displayMortgages(){
+        for(int i =0; i < mortgages.size(); i++)
+        {
+            JTable table1 = new JTable();
+            table1.setModel(new DefaultTableModel(
+                    new Object[][] {mortgages.get(i).
+                    }
+            ));
+        }
+
+
+
+
+    }
 
 
 }// End Menu Jframe

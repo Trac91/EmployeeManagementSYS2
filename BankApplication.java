@@ -6,7 +6,6 @@ import java.util.LinkedList;
 public class BankApplication{
 
     static ArrayList<Employee> employee = new ArrayList<>();
-    static ArrayList<Mortgage> mortgages = new ArrayList<>();
 
     public static void main(String arg[])
     {
@@ -14,7 +13,6 @@ public class BankApplication{
         MenuJFrame guiApp = new MenuJFrame();
         BranchManager[] branchManager = new BranchManager[1];
         ArrayList<Accounts> account = new ArrayList<>();
-        ArrayList<Mortgage> mortgages= new ArrayList<>();
 
         addEmployee();
         //Employee employee;
@@ -87,27 +85,5 @@ public class BankApplication{
 
     }
 
-    /*
-    // Save Employees to file
-    public static void SaveEmployees(ArrayList<Employee> employees)
-    {
-        File file = new File("employee.dat");
-        FileOutputStream fos = new FileOutputStream(file);
-        ObjectOutputStream oos = new ObjectOutputStream(fos);
 
-        oos.writeObject(employees);
-        oos.close();
-    }
-
-    // Read in employees from file
-    public static void OpenEmployees()
-    {
-        File file = new File("employee.dat");
-        FileInputStream fis = new FileInputStream(file);
-        ObjectInputStream ois = new ObjectInputStream(fis);
-
-        ArrayList<Employee> employees = ois.readObject();
-        ois.close();
-    }
-*/
 }
