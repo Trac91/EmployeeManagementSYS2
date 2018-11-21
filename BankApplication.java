@@ -1,5 +1,4 @@
-import javax.swing.*;
-import java.io.*;
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 
@@ -23,7 +22,7 @@ public class BankApplication{
         }
         System.out.print((employee.toArray()));
 
-        //addEmployeeForm(employee);
+
         displayEmployeeTable(employee);
 
         addMortgageForm();
