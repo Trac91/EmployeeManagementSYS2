@@ -26,6 +26,7 @@ public class SearchPanel implements ActionListener {
         c.gridy = 0;
 
         JTextField searchField = new JTextField(20);
+        searchField.addActionListener(this);
         JButton searchButton = new JButton("Search");
         searchButton.addActionListener(this); //code added by JB
 

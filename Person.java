@@ -9,7 +9,7 @@ public class Person {
 
 
     public Person() {
-       // this("Unknown", "Unknown", "Unknown", "Unknown", "unknown");
+       this("Unknown", "Unknown", "Unknown", "Unknown", "unknown");
 
         this.forename = forename;
         this.surname = surname;
@@ -19,12 +19,12 @@ public class Person {
 
     }
 
-  //  public Person(String forename, String surname, String address, String email, int phoneNo) {
+    public Person(String forename, String surname, String address, String email, int phoneNo) {
 
 
 
 
-   // }
+    }
 
     public Person(String forename, String surname, String address, String email, String phoneNo) {
         return;

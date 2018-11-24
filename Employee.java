@@ -1,6 +1,8 @@
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
-public  class Employee extends Person {
+public class Employee extends Person {
 
     private String employeeID;
     private Person employee;
@@ -9,22 +11,29 @@ public  class Employee extends Person {
 
     // No Argument Constructor
     public Employee() {
-        this(new Person(), "Unknown","Unknown","Unknown");
+        this( "Unknown","Unknown","Unknown");
 
     }
 
-    public Employee(Person employee, String employeeID, String department, String division) {
+    public Employee(String employeeID, String department, String division) {
 
-        super();
-        this.employeeID = employeeID;
-        this.department = department;
-        this.division = division;
-
+        setEmployeeID(employeeID);
+        setDepartment(department);
+        setDivision(division);
+        setEmployee(employee);
     }
 
-    public static void addEmployee() {
+    private List<Employee> allEmployees = new ArrayList<>();
+
+
+    public static void addEmployee(Employee employee ) {
+
 
         // need to code this *************
+    }
+
+    public  void get(ArrayList<Employee> e) {
+        return;
     }
 
     public void setEmployee(Person employee) {
@@ -33,10 +42,6 @@ public  class Employee extends Person {
 
     public Person getEmployee() {
         return employee;
-    }
-
-    public  void addEmployee(Employee employee) {
-    this.employee = employee;
     }
 
     // Getters
@@ -68,9 +73,13 @@ public  class Employee extends Person {
     }
 
     public String toString() {
-        return super.toString() + "Employee ID: " + getEmployeeID() + "\nDepartment: " + getDepartment() + "\nDivision: " + getDivision();
+
+    return super.toString()  +" " +getEmployee() + " " + getDepartment() + " " + getDivision();
     }
 
 
+    public List<Employee> getAllEmployees() {
+        return allEmployees;
+    }
 }
 

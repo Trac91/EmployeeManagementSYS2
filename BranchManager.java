@@ -33,7 +33,7 @@ public class BranchManager extends Employee {
 
     @Override
     public String toString() {
-        return "Department: " + department + super.toString() ;
+        return "Department: " + this.department + super.toString() ;
 
     }
 }
