@@ -1,6 +1,8 @@
 import javax.swing.*;
+import java.io.Serializable;
 
-public class Person {
+
+public class Person implements Serializable {
     private String forename;
     private String surname;
     private String address;
@@ -9,32 +11,17 @@ public class Person {
 
 
     public Person() {
-       this("Unknown", "Unknown", "Unknown", "Unknown", "unknown");
-
-        this.forename = forename;
-        this.surname = surname;
-        this.address = address;
-        this.email = email;
-        this.phoneNo = phoneNo;
+       this("Unknown", "Unknown", "Unknown", "Unknown", 0);
 
     }
 
     public Person(String forename, String surname, String address, String email, int phoneNo) {
 
-
-
-
-    }
-
-    public Person(String forename, String surname, String address, String email, String phoneNo) {
-        return;
-    }
-
-
-    public Person(String forename, String surname)
-    {
-        this.forename=forename;
-        this.surname=surname;
+        setSurname(surname);
+        setForename(forename);
+        setAddress(address);
+        setEmail(email);
+        setPhoneNo(phoneNo);
     }
 
     public String getSurname() {
@@ -42,7 +29,7 @@ public class Person {
     }
 
     public void setSurname(String surname) {
-        this.surname = getSurname();
+        this.surname = surname;
     }
 
     public String getForename() {
@@ -50,7 +37,7 @@ public class Person {
     }
 
     public void setForename(String forename) {
-        this.forename = getForename();
+        this.forename = forename;
     }
 
     public String getAddress() {
@@ -58,7 +45,7 @@ public class Person {
     }
 
     public void setAddress(String address) {
-        this.address = getAddress();
+        this.address = address;
     }
 
     public String getEmail() {
@@ -79,7 +66,7 @@ public class Person {
 
     @Override
     public String toString() {
-        return "\n Forename: " + getForename() + "\nSurname:" + getSurname() + "\nAddress:" + getAddress() + "\nEmail: " + getEmail() + "\nPhone No: " + getPhoneNo();
+        return  "\nSurname: " + getSurname() +"\n Forename: " + getForename() + "\nAddress: " + getAddress() + "\nEmail: " + getEmail() + "\nPhone No: " + getPhoneNo();
     }
 
 }

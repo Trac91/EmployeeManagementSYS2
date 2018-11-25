@@ -18,11 +18,19 @@ public class Mortgage extends Person{
 
     int annualInterestRate, amount, numYears;
 
-
-
     public Mortgage(String forename, String surname, String status, String dob, String numChildren, String firstTimeBuyer, String income, String additionalIncome, String price, String loanRequired){
 
-this(0,"Unknown", "Unknown","Unknown",null,0,false,0,0,0,0);    }
+this(0,
+        "Unknown",
+        "Unknown",
+        "Unknown",
+        null,
+        0,
+        false,
+        0,
+        0,
+        0,
+        0);    }
 
 public Mortgage(int numApp,String forename, String surname, String status,Date dob, int numChildren, boolean firstTimeBuyer, int income, int additionalIncome, int price, int loanRequired){
         this.numApp = numApp;

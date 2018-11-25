@@ -1,4 +1,4 @@
-public class BranchManager extends Employee {
+/*public class BranchManager extends Employee {
    //private String TYPE = "Branch";
     private String department;
     Person person;
@@ -7,6 +7,7 @@ public class BranchManager extends Employee {
 
     public BranchManager(String department)
     {
+        super(new Person(forename, surname, address, email, phoneNo), empID);
         this.department=department;
 
     }
@@ -18,6 +19,7 @@ public class BranchManager extends Employee {
     public BranchManager(Person employee, String employeeID, String department) {
 
         //super(employee, employeeID);
+        super(new Person(forename, surname, address, email, phoneNo), empID);
         this.department=department;
 
     }
@@ -39,3 +41,4 @@ public class BranchManager extends Employee {
 }
 
 
+*/

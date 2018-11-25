@@ -21,7 +21,7 @@ public class SearchPanel implements ActionListener {
         searchPanel.setSize(100, 200);
         searchPanel.setVisible(true);
         c.anchor = GridBagConstraints.LINE_START;
-        searchPanel.setBackground(Color.cyan);
+        searchPanel.setBackground(Color.LIGHT_GRAY);
         c.gridx = 0;
         c.gridy = 0;
 

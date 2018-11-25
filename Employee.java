@@ -1,8 +1,9 @@
+import javax.swing.*;
+import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-public class Employee extends Person {
+public class Employee extends Person implements Serializable {
 
     private String employeeID;
     private Person employee;
@@ -10,31 +11,31 @@ public class Employee extends Person {
     private String division;
 
     // No Argument Constructor
-    public Employee() {
+    Employee() {
         this( "Unknown","Unknown","Unknown");
 
     }
 
-    public Employee(String employeeID, String department, String division) {
+    public Employee(String employeeID,String department, String division) {
+
+
 
         setEmployeeID(employeeID);
         setDepartment(department);
         setDivision(division);
         setEmployee(employee);
+
+    }
+    Employee(String forename, String surname, String address, String email, int phoneNo){
+        super(forename,surname,address,email,phoneNo);
+        setEmployee(employee);
+
     }
 
-    private List<Employee> allEmployees = new ArrayList<>();
 
 
-    public static void addEmployee(Employee employee ) {
+    private List<Employee> allEmployees = new ArrayList();
 
-
-        // need to code this *************
-    }
-
-    public  void get(ArrayList<Employee> e) {
-        return;
-    }
 
     public void setEmployee(Person employee) {
         this.employee = employee;
@@ -44,6 +45,9 @@ public class Employee extends Person {
         return employee;
     }
 
+    /**
+     * @return
+     */
     // Getters
     public String getEmployeeID() {
         return employeeID;
@@ -74,12 +78,9 @@ public class Employee extends Person {
 
     public String toString() {
 
-    return super.toString()  +" " +getEmployee() + " " + getDepartment() + " " + getDivision();
-    }
-
-
-    public List<Employee> getAllEmployees() {
-        return allEmployees;
+        return "EmployeeID: " + getEmployeeID() + "\nForename: " + getForename() + "\nSurname: " + getSurname() +
+                "\nAddress: " + getAddress() + "\nEmail: " + getEmail() + "\nPhone No: " + getPhoneNo() +
+                "\nDepartment: " + getDepartment() + "\nDivision: " + getDivision();
     }
 }
 
