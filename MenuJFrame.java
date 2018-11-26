@@ -4,59 +4,51 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
-import javax.swing.table.TableColumn; //added by JB to manipulate width of table columns
 
+import javax.swing.table.TableColumn; //added by JB to manipulate width of table columns
 
 public class MenuJFrame implements ActionListener {
 
-    String email,forename,surname,address, phoneNo,empID,department,division;
-    JMenuItem applyMortgage;
-    GridBagConstraints c; //JB removed instantiation of constraints object here - instead do it within EmployeeForm() constructor
-    EmployeeForm empForm;
-    SearchPanel searchPanel;
-    UserLogin userLogin;
-    Handler handler = new Handler();
-    JPanel employeeForm;
-    JLabel idLabel, addressLabel, emailLabel, phoneLabel, departmentLabel, jobTitleLabel;
-    JTextField employeeID, surnameField, forenameField, emailField, phoneField, addressField;
-    JButton clearButton, registerButton;
-    String price, loanRequired;
-    ArrayList <Employee> allEmployees = new ArrayList<>(); //array list to hold all the Employee objects in the system
-   // ArrayList<Employee> employee = new ArrayList<>();
-    private ArrayList<Mortgage> mortgages = new ArrayList<>();
-    JFrame myFrame;
-    JPanel mortgageForm;
-   JPanel Userlogin;
-    JPanel mortgagePanel;
-    JComboBox statusBox;
-    JComboBox firstTimeBox;
-    JComboBox numChildrenBox;
-    JComboBox<String> divisionField;
-    JComboBox<String> departmentField;
+    private String email, forename, surname, address, phoneNo, empID, department, division;
+    private JMenuItem applyMortgage;
+    private GridBagConstraints c; //JB removed instantiation of constraints object here - instead do it within EmployeeForm() constructor
+    private EmployeeForm empForm;
+    private SearchPanel searchPanel;
+    private UserLogin userLogin;
+    private Handler handler = new Handler();
+    private JPanel employeeForm;
+    private JLabel idLabel, addressLabel, emailLabel, phoneLabel, departmentLabel, jobTitleLabel;
+    private JTextField employeeID, surnameField, forenameField, emailField, phoneField, addressField;
+    private JButton clearButton, registerButton;
+    private ArrayList<Employee> allEmployees = new ArrayList<>(); //array list to hold all the Employee objects in the system
+    //private ArrayList<Mortgage> mortgages = new ArrayList<>();
+    private JFrame myFrame;
+    private JPanel mortgageForm;
+    private JPanel Userlogin;
+    private JPanel mortgagePanel;
+    private JComboBox<String> divisionField;
+    private JComboBox<String> departmentField;
 
-   // Employee employee = new Employee(empID,surname,forename,address,email,phoneNo,department,division);
+    // Employee employee = new Employee(empID,surname,forename,address,email,phoneNo,department,division);
 
+    /**
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     public MenuJFrame() throws IOException, ClassNotFoundException {
-      //  Employee employee = new Employee(new Person(String empID,String department,String division));
-
-        //JB Advice - add method call here to populate the array list allEmployees with the contents of
-        //the file on disk that holds that data e.g. employees.dat
-        //This means it is now available to the actionPerformed() method and you can do searches,
-        //add new employees, delete and edit employees
+        //  Employee employee = new Employee(new Person(String empID,String department,String division));
 
         // InputOutput.OpenEmployees(); **** Must Code I/O Exceptions
 
         myFrame = new JFrame();
-       // BranchManager branchManager = new BranchManager();
-      // allEmployees(new Employee(new Person(empID,department,division)));
         myFrame.setTitle("Employee Management System");
         myFrame.setSize(1000, 800);
         myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         myFrame.setVisible(true);
         // Menu Bar
         // I Want the login in panel to display when the application opens
-       userLogin = new UserLogin();
-       userLogin.userLogin();
+        userLogin = new UserLogin();
+        userLogin.userLogin();
 
         JMenuBar menuBar = new JMenuBar();
         myFrame.setJMenuBar(menuBar);
@@ -90,8 +82,9 @@ public class MenuJFrame implements ActionListener {
         myFrame.setVisible(true);
     } // End MenuJframe
 
-
-
+    /**
+     * Create employee form and positions then
+     */
     public class EmployeeForm {
 
         JPanel employeeForm;
@@ -122,6 +115,7 @@ public class MenuJFrame implements ActionListener {
             phoneLabel = new JLabel("Phone No.");
             departmentLabel = new JLabel("Department");
             jobTitleLabel = new JLabel("Title");
+
             //add Jlabels
             employeeForm.add(idLabel, c);
             c.gridy++; // Increments and moves to row below
@@ -156,7 +150,6 @@ public class MenuJFrame implements ActionListener {
             departmentField = new JComboBox<>(departments);
             divisionField = new JComboBox<>(jobTitles);
 
-
             //add fields/combo box
             employeeForm.add(employeeID, c);
             employeeID.addActionListener(handler);
@@ -188,7 +181,6 @@ public class MenuJFrame implements ActionListener {
             clearButton.addActionListener(handler);
             registerButton = new JButton("Register Employee");
             registerButton.addActionListener(handler);
-
             c.gridx = 0;
             c.gridy = 10;
             c.anchor = GridBagConstraints.LINE_END;
@@ -205,6 +197,11 @@ public class MenuJFrame implements ActionListener {
         } // end constructor
     }// end addemployee form
 
+    /**
+     * @param
+     *
+     * * is pressed the system closes
+     */
     public void actionPerformed(ActionEvent e) {
 
         if (e.getActionCommand().equals("Exit")) // program closes when exit is clicked
@@ -213,6 +210,9 @@ public class MenuJFrame implements ActionListener {
         }
         /*JB Added/Modified code here to ensure the Add/Edit Employees and Mortgage forms rendered successfully*/
 
+        /**
+         * If add employee is selected Employee form appears,
+         */
         else if (e.getActionCommand().equals("Add Employee")) // Add employee form appears
         {
             if (empForm != null) {
@@ -238,6 +238,9 @@ public class MenuJFrame implements ActionListener {
 
             myFrame.revalidate();
 
+            /**
+             * When Edit employee is clicked, the search bar appears on top to let the user search for a specific employee/department
+             */
         } else if (e.getActionCommand().equals("Edit Employee")) {
 
             if (empForm != null) {
@@ -272,7 +275,6 @@ public class MenuJFrame implements ActionListener {
                 System.out.println(myFrame);
                 System.out.println(empForm.employeeForm);
                 myFrame.remove(empForm.employeeForm);
-
             }
 
             if (searchPanel != null) {
@@ -290,7 +292,12 @@ public class MenuJFrame implements ActionListener {
             myFrame.revalidate();
             // search bar to find employee to be deleted
             // employee form appears with fields filled with employee details ready to be edited
+
+
             // Delete option with confirmation message
+            /**
+             * If user clicks apply, input dialogs take in information from the user regarding there income details for the mortgage calculator
+             */
         } else if (e.getActionCommand().equals("Apply")) {
 
             if (empForm != null) {
@@ -304,6 +311,16 @@ public class MenuJFrame implements ActionListener {
                 myFrame.remove(searchPanel.getSearchPanel());
             }
 
+            int loanAmount = Integer.parseInt(JOptionPane.showInputDialog("Enter Loan Amount"));
+            double deposit = Double.parseDouble(JOptionPane.showInputDialog("Deposit"));
+            int years = Integer.parseInt(JOptionPane.showInputDialog("Enter term in year"));
+            int annualInterestRate = Integer.parseInt(JOptionPane.showInputDialog("Enter annual interest rate"));
+            double valueOfHome = Double.parseDouble(JOptionPane.showInputDialog("Enter Value of home"));
+            double annualIncome = Double.parseDouble(JOptionPane.showInputDialog("Annual Income"));
+
+            mortgageCalculator(loanAmount, years, valueOfHome, annualIncome, deposit);
+
+            calculateMonthlyPayment(loanAmount, years, annualInterestRate);
 
 
             // Application form appears
@@ -315,16 +332,16 @@ public class MenuJFrame implements ActionListener {
         } else if ((e.getActionCommand().equals("Search"))) //code added by JB here just for this option
         {
             System.out.println("Search on Employees happens now!!");
-           // String[] columns = {"Employee ID", "Forename", "Surname", "Address", "Email", "Phone", "Department", "Division"};
-             JFrame empTable; //code added by JB to demo creation of JTable of employees
-         //  empTable = addEmployeeTable(employee, columns);
+            // String[] columns = {"Employee ID", "Forename", "Surname", "Address", "Email", "Phone", "Department", "Division"};
+            //JFrame empTable; //code added by JB to demo creation of JTable of employees
+            //  empTable = addEmployeeTable(employee, columns);
 
         } else if (e.getActionCommand().equals("Apply Mortgage")) {
-            myFrame.add(mortgageForm); myFrame.revalidate();
-            int loanAmount = Integer.parseInt(JOptionPane.showInputDialog("Enter Loan Amount"));
-            int years = Integer.parseInt(JOptionPane.showInputDialog("Enter term in year"));
-            int annualInterestRate = Integer.parseInt(JOptionPane.showInputDialog("Enter annual interest rate"));
-            CalculateMortgage.calculateMonthlyPayment(loanAmount, years, annualInterestRate);
+            myFrame.add(mortgageForm);
+            myFrame.revalidate();
+
+
+            //  CalculateMortgage.(loanAmount, years, annualInterestRate,valueOfHome,annualIncome);
 
         }
 
@@ -333,6 +350,9 @@ public class MenuJFrame implements ActionListener {
          *removed*/
     }
 
+    /**
+     * Create employee form
+     */
     private void addMortgageForm() {
 
         // Must do!
@@ -348,35 +368,38 @@ public class MenuJFrame implements ActionListener {
             address = addressField.getText();
             email = emailField.getText();
             phoneNo = phoneField.getText();
+            int intPhone = Integer.parseInt(phoneNo);
             department = (String) departmentField.getSelectedItem();
             division = (String) divisionField.getSelectedItem();
 
             if (event.getSource() == registerButton) {
 
-               //empForm = new EmployeeForm();
-               //for (int i = 0; i < allEmployees.size(); i++) {
-                Employee employee = new Employee(empID,department,division);
+                //empForm = new EmployeeForm();
+                //for (int i = 0; i < allEmployees.size(); i++) {
+                Employee employee = new Employee(forename, surname, address, email, intPhone, empID, department, division);
 
-                    empID = employeeID.getText();
-                    forename = forenameField.getText();
-                    surname = surnameField.getText();
-                    address = addressField.getText();
-                    email = emailField.getText();
-                    phoneNo = phoneField.getText();
-                    department = (String)departmentField.getSelectedItem();
-                    division = (String) divisionField.getSelectedItem();
+                empID = employeeID.getText();
+                forename = forenameField.getText();
+                surname = surnameField.getText();
+                address = addressField.getText();
+                email = emailField.getText();
+                intPhone = Integer.parseInt(phoneNo);
+                phoneNo = phoneField.getText();
+                department = (String) departmentField.getSelectedItem();
+                division = (String) divisionField.getSelectedItem();
 
-                    allEmployees.add(employee);
+                allEmployees.add(employee);
 
-                   for (Employee e : allEmployees) {
-                       System.out.println(e);
-                   }
-
-
-                    System.out.println("Employee added");
-                    //System.out.println(Arrays.toString(employee.toArray()));
-
+                for (Employee e : allEmployees) {
+                    System.out.println(e);
                 }
+
+                JOptionPane.showMessageDialog(null, "Employee added");
+
+                new EmployeeTable();
+                displayEmployees(allEmployees);
+
+            }
 
             if (event.getSource() == clearButton) {
 
@@ -391,6 +414,10 @@ public class MenuJFrame implements ActionListener {
             // End if registered button
 
             else if (event.getSource() == applyMortgage) {
+
+
+
+                //mortgageForm = new JPanel();
 
             }
              /*   forename = fNameField.getText();
@@ -417,36 +444,28 @@ public class MenuJFrame implements ActionListener {
 
         }
 
-        } // End Handler
+    } // End Handler
 
-        //Mortgage m = new Mortgage(forename,surname,status,dob,numChildren,firstTimeBuyer,income,additionalIncome,price,loanRequired);
+    //Mortgage m = new Mortgage(forename,surname,status,dob,numChildren,firstTimeBuyer,income,additionalIncome,price,loanRequired);
 
-        // Mortgage.add(m);
+    // Mortgage.add(m);
 
-        // JOptionPane.showMessageDialog(null, "Mortgage Inquiry Added");
-
-
-        /*JB Advice - Tracey you could create a class called SearchPanel here just as I did above for the EmployeeForm class if you wish
-         *Then searchPanel() could  become the constructor for the class and you would create an instance of SearchPanel when
-         *you want to create the panel for your GUI*/
+    // JOptionPane.showMessageDialog(null, "Mortgage Inquiry Added");
 
 
-        public class EmployeeTable extends JFrame {
-            JTable table;
+    /**
+     * Create JTable with Values from ArrayList
+     */
+    public class EmployeeTable extends JFrame {
+        JTable table;
 
 
-            //ArrayList<Employee> allEmployees = new ArrayList<>();
-            public EmployeeTable() {
+        //ArrayList<Employee> allEmployees = new ArrayList<>();
+        public EmployeeTable() {
 
+            String[] columns = {"Employee ID", "Forename", "Surname", "Address", "Email", "Phone", "Department", "Division"};
 
-                String[] columns = {"Employee ID", "Forename", "Surname", "Address", "Email", "Phone", "Department", "Division"};
-
-                /*JB Advice - the values below are perfect for testing purposes but, in reality, at this point the table will
-                 *be populated with data of the Employee objects that matched your search criteria when the "Search" button
-                 *was pressed, which are obtained by traversing through the ArrayList of Employee objects*/
-
-
-                    //displayEmployees(allEmployees);
+            //displayEmployees(allEmployees);
 
             Object[][] employees = {
                     {"1", "Tracey", "Brosnan", " Killarney", "TB@yahoo.co.uk ", "0891232345", "HR", "Accounts"},
@@ -455,212 +474,260 @@ public class MenuJFrame implements ActionListener {
                     {"1", "Tracey", "Brosnan", " Killarney", "TB@yahoo.co.uk ", "0891232345", "HR", "Accounts"},
                     {"1", "Tracey", "Brosnan", " Killarney", "TB@yahoo.co.uk ", "0891232345", "HR", "Accounts"},
                     {"1", "Tracey", "Brosnan", " Killarney", "TB@yahoo.co.uk ", "0891232345", "HR", "Accounts"}
-           };
+            };
 
-               table = new JTable( employees,columns);
+            table = new JTable(employees, columns);
 
-                //The code below added by JB, adapted from https://stackoverflow.com/questions/5775602/jtable-set-column-size-problem
-                //Alters the column width of table columns so they render reasonably first time
+            //The code below added by JB, adapted from https://stackoverflow.com/questions/5775602/jtable-set-column-size-problem
+            //Alters the column width of table columns so they render reasonably first time
 
-                TableColumn column = null;
+            TableColumn column = null;
 
-                for (int i = 0; i < columns.length; i++) {
-                    column = table.getColumnModel().getColumn(i);
+            for (int i = 0; i < columns.length; i++) {
+                column = table.getColumnModel().getColumn(i);
 
-                    column.setPreferredWidth(100);
-                }
-
-                JScrollPane scrollPane = new JScrollPane(table);
-                add(scrollPane, BorderLayout.CENTER);
-
-                setLocation(500, 300);
-                setSize(column.getPreferredWidth() * columns.length, 200);
-
-                setVisible(true);
-
-            } // End constructor
-
-        } // End employee table
-
-
-
-        public class MortgageTable extends JFrame {
-            JTable MTable;
-
-            public MortgageTable() {
-
-                String[] columns = {"No. of Applicants", "Forename", "Surname", "Status", "Dob", "No. Children", "First Time Buyer", "Additional Income", "Childcare fees", "Maintance", "Price", "Loan Required"};
-
-                ArrayList<Mortgage> mortgages = new ArrayList<>();
-
-                TableColumn column = null;
-
-                for (int i = 0; i < columns.length; i++) {
-                    column = MTable.getColumnModel().getColumn(i);
-
-                    column.setPreferredWidth(100);
-                }
-
-                JScrollPane scrollPane = new JScrollPane(MTable);
-                add(scrollPane, BorderLayout.CENTER);
-
-                setLocation(500, 300);
-                setSize(column.getPreferredWidth() * columns.length, 200);
-
-                setVisible(true);
-
-
-            } // End Mortgage table constructor
-
-            public void MortgageForm() {
-                mortgagePanel = new JPanel(new GridBagLayout());
-                mortgagePanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.BLACK, 1, true), "Mortgage Application"));
-                mortgagePanel.setSize(100, 200);
-                GridBagConstraints c = new GridBagConstraints();
-                c.gridx = 0;
-                c.gridy = 0;
-                c.anchor = GridBagConstraints.LINE_END;
-                c.insets = new Insets(10, 20, 10, 20);
-
-                // create labels
-                JLabel numApplicants = new JLabel("No. of applicants");
-                JLabel status = new JLabel("Marital status");
-                JLabel fName = new JLabel("Forename");
-                JLabel sName = new JLabel("Surname");
-                JLabel dob = new JLabel("Date of birth");
-                JLabel numChildren = new JLabel("No. of dependant children");
-                JLabel firstTimeBuyer = new JLabel("First time buyer");
-                JLabel income = new JLabel("Basic income");
-                JLabel additionalIncome = new JLabel("Additional Income");
-                JLabel childcare = new JLabel("Childcare costs");
-                JLabel maintenance = new JLabel("Maintenance costs");
-                JLabel price = new JLabel("Purchase Price");
-                JLabel loanRequired = new JLabel("Mortgage loan required");
-
-                //create fields
-                String[] numApp = {"1", "2"};
-                JComboBox<String> numApplicantsCombo = new JComboBox<>(numApp);
-                String[] statusArray = {"Single", "Married", "Divorced/Separated", "Widowed", "Cohabitant"};
-                JComboBox<String> statusCombo = new JComboBox<>(statusArray);
-                JTextField fNameField = new JTextField(20);
-                JTextField sNameField = new JTextField(20);
-                // date picker here
-
-                String[] numChildrenArray = {"None", "1", "2", "3", "4", "5", "6", "7", "8", "9+"};
-                JComboBox<String> numChildrenCombo = new JComboBox<>(numChildrenArray);
-                String[] options = {"Yes", "No"};
-                JComboBox<String> firstTimeBuyerCombo = new JComboBox<>(options);
-                JTextField incomeField = new JTextField(20);
-                JTextField additionalIncomeField = new JTextField(20);
-                JTextField childcareField = new JTextField(20);
-                JTextField maintenanceField = new JTextField(20);
-                JTextField priceField = new JTextField(20);
-                JTextField loanRequiredField = new JTextField(20);
-
-                //add labels
-                mortgagePanel.add(numApplicants, c);
-                c.gridy++;
-                mortgagePanel.add(fName, c);
-                c.gridy++;
-                mortgagePanel.add(sName, c);
-                c.gridy++;
-                mortgagePanel.add(status, c);
-                c.gridy++;
-                mortgagePanel.add(dob, c);
-                c.gridy++;
-                mortgagePanel.add(numChildren, c);
-                c.gridy++;
-                mortgagePanel.add(firstTimeBuyer, c);
-                c.gridy++;
-                mortgagePanel.add(income, c);
-                c.gridy++;
-                mortgagePanel.add(additionalIncome, c);
-                c.gridy++;
-                mortgagePanel.add(childcare, c);
-                c.gridy++;
-                mortgagePanel.add(maintenance, c);
-                c.gridy++;
-
-                mortgagePanel.add(price, c);
-                c.gridy++;
-                mortgagePanel.add(loanRequired, c);
-                c.gridy++;
-
-                //addfields
-                c.gridx = 1;
-                c.gridy = 0;
-                c.anchor = GridBagConstraints.LINE_END;
-                mortgagePanel.add(numApplicantsCombo, c);
-                numApplicantsCombo.getSelectedItem();
-                c.gridy++;
-                mortgagePanel.add(fNameField, c);
-                fNameField.addActionListener(e -> setName(fNameField.getText()));
-                c.gridy++;
-                mortgagePanel.add(sNameField, c);
-                sNameField.addActionListener(handler);
-                c.gridy++;
-                mortgagePanel.add(statusCombo, c);
-                statusCombo.getSelectedItem();
-                c.gridy++;
-                mortgagePanel.add(dob, c);
-
-                c.gridy++;
-                mortgagePanel.add(numChildrenCombo, c);
-                numChildrenCombo.getSelectedItem();
-
-                c.gridy++;
-                mortgagePanel.add(firstTimeBuyerCombo, c);
-                firstTimeBuyerCombo.getSelectedItem();
-                c.gridy++;
-                mortgagePanel.add(incomeField, c);
-                incomeField.addActionListener(handler);
-                c.gridy++;
-                mortgagePanel.add(additionalIncomeField, c);
-                additionalIncomeField.addActionListener(handler);
-                c.gridy++;
-                mortgagePanel.add(childcareField, c);
-                childcareField.addActionListener(handler);
-                c.gridy++;
-                mortgagePanel.add(maintenanceField, c);
-                maintenanceField.addActionListener(handler);
-                c.gridy++;
-                mortgagePanel.add(maintenanceField, c);
-                maintenanceField.addActionListener(handler);
-                c.gridy++;
-                mortgagePanel.add(maintenanceField, c);
-                maintenanceField.addActionListener(handler);
-                c.gridy++;
-
-                Container pane = myFrame.getContentPane();
-                pane.add(mortgagePanel);
-                mortgagePanel.setVisible(true);
-                myFrame.setVisible(true);
-
-
-            } // End Mortgage Form
-
-        }
-
-        public void addEmployee()  {
-           // Employee employee = new Em
+                column.setPreferredWidth(100);
             }
-/*
-   public void displayEmployees(ArrayList <Employee> allEmployees)
-    {
-        String employeeDetails ="";
-        for(Employee employee : allEmployees)
-        {
+
+            JScrollPane scrollPane = new JScrollPane(table);
+            add(scrollPane, BorderLayout.CENTER);
+
+            setLocation(500, 300);
+            setSize(column.getPreferredWidth() * columns.length, 200);
+
+            setVisible(true);
+
+        } // End constructor
+
+    } // End employee table
+
+    /**
+     * Create Mortgage table
+     */
+    public class MortgageTable extends JFrame {
+        JTable MTable;
+
+        public MortgageTable() {
+
+            String[] columns = {"No. of Applicants", "Forename", "Surname", "Status", "Dob", "No. Children", "First Time Buyer", "Additional Income", "Childcare fees", "Maintance", "Price", "Loan Required"};
+
+            //ArrayList<Mortgage> mortgages = new ArrayList<>();
+
+            TableColumn column = null;
+
+            for (int i = 0; i < columns.length; i++) {
+                column = MTable.getColumnModel().getColumn(i);
+
+                column.setPreferredWidth(100);
+            }
+
+            JScrollPane scrollPane = new JScrollPane(MTable);
+            add(scrollPane, BorderLayout.CENTER);
+
+            setLocation(500, 300);
+            setSize(column.getPreferredWidth() * columns.length, 200);
+
+            setVisible(true);
+
+
+        } // End Mortgage table constructor
+
+        /**
+         * Constuctor for mortgage form
+         */
+        public void MortgageForm() {
+            mortgagePanel = new JPanel(new GridBagLayout());
+            mortgagePanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.BLACK, 1, true), "Mortgage Application"));
+            mortgagePanel.setSize(100, 200);
+            GridBagConstraints c = new GridBagConstraints();
+            c.gridx = 0;
+            c.gridy = 0;
+            c.anchor = GridBagConstraints.LINE_END;
+            c.insets = new Insets(10, 20, 10, 20);
+
+            // create labels
+            JLabel numApplicants = new JLabel("No. of applicants");
+            JLabel status = new JLabel("Marital status");
+            JLabel fName = new JLabel("Forename");
+            JLabel sName = new JLabel("Surname");
+            JLabel dob = new JLabel("Date of birth");
+            JLabel numChildren = new JLabel("No. of dependant children");
+            JLabel firstTimeBuyer = new JLabel("First time buyer");
+            JLabel income = new JLabel("Basic income");
+            JLabel additionalIncome = new JLabel("Additional Income");
+            JLabel childcare = new JLabel("Childcare costs");
+            JLabel maintenance = new JLabel("Maintenance costs");
+            JLabel price = new JLabel("Purchase Price");
+            JLabel loanRequired = new JLabel("Mortgage loan required");
+
+            //create fields
+            String[] numApp = {"1", "2"};
+            JComboBox<String> numApplicantsCombo = new JComboBox<>(numApp);
+            String[] statusArray = {"Single", "Married", "Divorced/Separated", "Widowed", "Cohabitant"};
+            JComboBox<String> statusCombo = new JComboBox<>(statusArray);
+            JTextField fNameField = new JTextField(20);
+            JTextField sNameField = new JTextField(20);
+            // date picker here
+
+            String[] numChildrenArray = {"None", "1", "2", "3", "4", "5", "6", "7", "8", "9+"};
+            JComboBox<String> numChildrenCombo = new JComboBox<>(numChildrenArray);
+            String[] options = {"Yes", "No"};
+            JComboBox<String> firstTimeBuyerCombo = new JComboBox<>(options);
+            JTextField incomeField = new JTextField(20);
+            JTextField additionalIncomeField = new JTextField(20);
+            JTextField childcareField = new JTextField(20);
+            JTextField maintenanceField = new JTextField(20);
+            JTextField priceField = new JTextField(20);
+            JTextField loanRequiredField = new JTextField(20);
+
+            //add labels
+            mortgagePanel.add(numApplicants, c);
+            c.gridy++;
+            mortgagePanel.add(fName, c);
+            c.gridy++;
+            mortgagePanel.add(sName, c);
+            c.gridy++;
+            mortgagePanel.add(status, c);
+            c.gridy++;
+            mortgagePanel.add(dob, c);
+            c.gridy++;
+            mortgagePanel.add(numChildren, c);
+            c.gridy++;
+            mortgagePanel.add(firstTimeBuyer, c);
+            c.gridy++;
+            mortgagePanel.add(income, c);
+            c.gridy++;
+            mortgagePanel.add(additionalIncome, c);
+            c.gridy++;
+            mortgagePanel.add(childcare, c);
+            c.gridy++;
+            mortgagePanel.add(maintenance, c);
+            c.gridy++;
+
+            mortgagePanel.add(price, c);
+            c.gridy++;
+            mortgagePanel.add(loanRequired, c);
+            c.gridy++;
+
+            //addfields
+            c.gridx = 1;
+            c.gridy = 0;
+            c.anchor = GridBagConstraints.LINE_END;
+            mortgagePanel.add(numApplicantsCombo, c);
+            numApplicantsCombo.getSelectedItem();
+            c.gridy++;
+            mortgagePanel.add(fNameField, c);
+            fNameField.addActionListener(e -> setName(fNameField.getText()));
+            c.gridy++;
+            mortgagePanel.add(sNameField, c);
+            sNameField.addActionListener(handler);
+            c.gridy++;
+            mortgagePanel.add(statusCombo, c);
+            statusCombo.getSelectedItem();
+            c.gridy++;
+            mortgagePanel.add(dob, c);
+
+            c.gridy++;
+            mortgagePanel.add(numChildrenCombo, c);
+            numChildrenCombo.getSelectedItem();
+
+            c.gridy++;
+            mortgagePanel.add(firstTimeBuyerCombo, c);
+            firstTimeBuyerCombo.getSelectedItem();
+            c.gridy++;
+            mortgagePanel.add(incomeField, c);
+            incomeField.addActionListener(handler);
+            c.gridy++;
+            mortgagePanel.add(additionalIncomeField, c);
+            additionalIncomeField.addActionListener(handler);
+            c.gridy++;
+            mortgagePanel.add(childcareField, c);
+            childcareField.addActionListener(handler);
+            c.gridy++;
+            mortgagePanel.add(maintenanceField, c);
+            maintenanceField.addActionListener(handler);
+            c.gridy++;
+            mortgagePanel.add(maintenanceField, c);
+            maintenanceField.addActionListener(handler);
+            c.gridy++;
+            mortgagePanel.add(maintenanceField, c);
+            maintenanceField.addActionListener(handler);
+            c.gridy++;
+
+            Container pane = myFrame.getContentPane();
+            pane.add(mortgagePanel);
+            mortgagePanel.setVisible(true);
+            myFrame.setVisible(true);
+
+
+        } // End Mortgage Form
+
+    } // End mortgage Table
+
+    /**
+     *
+     * @param allEmployees are displayed and added to array list
+     */
+    public void displayEmployees(ArrayList<Employee> allEmployees) {
+        String employeeDetails = "";
+        for (Employee employee : allEmployees) {
             System.out.println("Emp ID" + employee.getEmployeeID() + "Dep" + employee.getDepartment() + employee.getDivision() + employee.getEmployee());
         }
         JOptionPane.showMessageDialog(null, employeeDetails);
     }
-   */
 
-        }
+    /**
+     *
+     * @param loanAmount
+     * @param years
+     * @param annualInterestRate
+     *method calculates the monthly repayments
+     */
+    void calculateMonthlyPayment(int loanAmount, int years, double annualInterestRate) {
+
+        double monthlyInterestRate = annualInterestRate / 12.0;
+
+        int months = years * 12;
+
+        double monthlyPayment = (loanAmount * monthlyInterestRate) /
+                (1 - Math.pow(1 + monthlyInterestRate, -months));
+
+        JOptionPane.showMessageDialog(null, monthlyPayment);
+    }
+
+    /**
+     *
+     * @param loanAmount
+     * @param years
+     * @param valueOfHome
+     * @param annualIncome
+     * @param deposit
+     * method that calculates mortgage approval
+     */
+    void mortgageCalculator(int loanAmount, int years, double valueOfHome, double annualIncome, double deposit) {
+
+       final double percentage = 0.10;
 
 
 
-    // End MortgageTable//
+        if(deposit < (valueOfHome / 100) * percentage)
+        {
+            if(loanAmount > valueOfHome)
+            {
+                if(loanAmount > (annualIncome*3.5))
+                {
+                    JOptionPane.showMessageDialog(null, "Application Denied");
+
+                } else JOptionPane.showMessageDialog(null,"The loan amount has exceeded the value of the house");
+
+            }else loanAmount = Integer.parseInt(JOptionPane.showInputDialog(" Loan amount must not be greater tha the value of the property"));
+
+        }else
+            deposit = Double.parseDouble(JOptionPane.showInputDialog(null, "Deposit Must at least 10% of the House value"));
+    }
+}
+
+// End MortgageTable//
 
 
     /*
@@ -673,7 +740,6 @@ public class MenuJFrame implements ActionListener {
                     }
             ));
         }
-
 */
 
 
@@ -688,8 +754,6 @@ public class MenuJFrame implements ActionListener {
 
 
 //https://stackoverflow.com/questions/8770617/java-items-appear-only-after-the-window-is-resize
-
-
 
 
 

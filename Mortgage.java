@@ -1,9 +1,9 @@
 import javax.swing.*;
 import java.util.Date;
 
-public class Mortgage extends Person{
+//public class Mortgage extends Person{
 
-    private int numApp;
+    /* private int numApp;
     private String forename;
     private String surname;
     private String status;
@@ -16,7 +16,7 @@ public class Mortgage extends Person{
     private int loanRequired;
 
 
-    int annualInterestRate, amount, numYears;
+
 
     public Mortgage(String forename, String surname, String status, String dob, String numChildren, String firstTimeBuyer, String income, String additionalIncome, String price, String loanRequired){
 
@@ -173,3 +173,4 @@ public Mortgage(int numApp,String forename, String surname, String status,Date d
         return super.toString() + getNumApp() + getForename() + getSurname() + getAdditionalIncome() + getAmount() + getAnnualInterestRate() + getDob() + getIncome() + getNumChildren() + getNumYears() + getPrice() + getStatus();
     }
 }
+*/

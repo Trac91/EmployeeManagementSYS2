@@ -11,14 +11,14 @@ public class Employee extends Person implements Serializable {
     private String division;
 
     // No Argument Constructor
-    Employee() {
-        this( "Unknown","Unknown","Unknown");
+    //Employee() {
+      //  this( "Unknown","Unknown","Unknown");
 
-    }
+    //}
 
-    public Employee(String employeeID,String department, String division) {
+    public Employee(String forename, String surname, String address, String email ,int phoneNo, String employeeID, String department,String division) {
 
-
+        super(forename,surname,address,email,phoneNo);
 
         setEmployeeID(employeeID);
         setDepartment(department);
@@ -26,15 +26,9 @@ public class Employee extends Person implements Serializable {
         setEmployee(employee);
 
     }
-    Employee(String forename, String surname, String address, String email, int phoneNo){
-        super(forename,surname,address,email,phoneNo);
-        setEmployee(employee);
 
-    }
+    private ArrayList <Employee> allEmployees = getEmployee();
 
-
-
-    private List<Employee> allEmployees = new ArrayList();
 
 
     public void setEmployee(Person employee) {
@@ -59,7 +53,10 @@ public class Employee extends Person implements Serializable {
 
     //toString Method
 
-
+    /**
+     *
+     * @return department
+     */
     public String getDepartment() {
         return department;
     }

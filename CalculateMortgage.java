@@ -1,7 +1,8 @@
 import javax.swing.*;
+/*
 
 public class CalculateMortgage {
-    static void calculateMonthlyPayment(int loanAmount, int years, double annualInterestRate) {
+    static void calculateMonthlyPayment(int loanAmount, int years, double annualInterestRate, double valueOfHome, double) {
 
         double monthlyInterestRate = annualInterestRate / 12.0;
 
@@ -14,18 +15,6 @@ public class CalculateMortgage {
     }
 
 
-
-    public void isValidApplication(int income, int deposit) {
-        boolean valid = false;
-
-        if (income < 30000 || deposit < 12000)
-
-        {
-            return;
-        }
-
-
-    }
 
 }
 

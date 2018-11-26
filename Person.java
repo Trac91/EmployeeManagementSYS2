@@ -1,8 +1,9 @@
 import javax.swing.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 
 
-public class Person implements Serializable {
+public class Person extends ArrayList<Employee> implements Serializable {
     private String forename;
     private String surname;
     private String address;
